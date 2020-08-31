@@ -349,7 +349,7 @@ if __name__ == '__main__':
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
     parser.add_argument('--learning_rate', default=0.001, type=float)
-    parser.add_argument('--num_epoch', default=10, type=int)
+    parser.add_argument('--num_epoch', default=100, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
     parser.add_argument('--gpu', default=0, type=int)
     parser.add_argument('--embed_dim', default=300, type=int)
