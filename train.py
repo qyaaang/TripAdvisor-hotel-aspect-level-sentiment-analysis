@@ -93,6 +93,9 @@ class BaseExperiment:
         self.test_data_loader = DataLoader(dataset=tripadvisor_dataset.test_data,
                                            batch_size=len(tripadvisor_dataset.test_data),
                                            shuffle=False)
+        self.target_data_loader = DataLoader(dataset=tripadvisor_dataset.test_data,
+                                           batch_size=len(tripadvisor_dataset.test_data),
+                                           shuffle=False)
         self.mdl = args.model_class(self.args,
                                     embedding_matrix=tripadvisor_dataset.embedding_matrix,
                                     aspect_embedding_matrix=tripadvisor_dataset.aspect_embedding_matrix)
@@ -306,16 +309,47 @@ class BaseExperiment:
         print('Test accuracy:{:.5f}%, macro_f1:{:.5f}'.format(result['acc'] * 100, result['macro_f1']))
         return result
 
+    def transfer_model(self):
+        model_path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}.model'.format(self.args.model_name,
+                                                                                  self.args.source_dataset,
+                                                                                  self.args.optimizer,
+                                                                                  self.args.learning_rate,
+                                                                                  self.args.max_seq_len,
+                                                                                  self.args.dropout,
+                                                                                  self.args.softmax,
+                                                                                  self.args.batch_size,
+                                                                                  self.args.dev)
+        self.mdl.load_state_dict(self.load_model(model_path))
+        self.mdl.eval()
+        outputs, targets = None, None
+        with torch.no_grad():
+            for t_batch, t_sample_batched in enumerate(self.train_data_loader):
+                output, target = self.evaluation(t_sample_batched)
+                if outputs is None:
+                    outputs = output
+                else:
+                    outputs = np.concatenate((outputs, output))
+
+                if targets is None:
+                    targets = target
+                else:
+                    targets = np.concatenate((targets, target))
+        # result = self.metric(targets=targets, outputs=output, save_path=ans_file)
+        result = self.metric(targets=targets, outputs=output)
+        print('Test accuracy:{:.5f}%, macro_f1:{:.5f}'.format(result['acc'] * 100, result['macro_f1']))
+        return result
+
 
 if __name__ == '__main__':
     # Hyper Parameters
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_name', default='MemNet', type=str)
+    parser.add_argument('--model_name', default='CNN', type=str)
     parser.add_argument('--dataset', default='hotel', type=str)
+    parser.add_argument('--source_dataset', default='ABSA restaurants', type=str)
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
     parser.add_argument('--learning_rate', default=0.001, type=float)
-    parser.add_argument('--num_epoch', default=100, type=int)
+    parser.add_argument('--num_epoch', default=10, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
     parser.add_argument('--gpu', default=0, type=int)
     parser.add_argument('--embed_dim', default=300, type=int)
@@ -396,3 +430,4 @@ if __name__ == '__main__':
     exp = BaseExperiment(args)
     result_train = exp.train()
     result_test = exp.test()
+    # result = exp.transfer_model()

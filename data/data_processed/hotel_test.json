@@ -3,12 +3,7 @@
     "text": "The hotel staff provided excellent service starting from your first step to the hotel",
     "id": "c101s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -29,12 +24,7 @@
     "text": "The reception warmly welcomes your stay",
     "id": "c101s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -49,12 +39,7 @@
     "text": "She also discovered this visit is on my birthday",
     "id": "c101s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -62,12 +47,7 @@
     "text": "She bless my birthday and provided a compliment birthday cake and birthday card at night as a surprise gift. ",
     "id": "c101s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -75,12 +55,7 @@
     "text": "This is a very special present for the guest like me",
     "id": "c101s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -88,12 +63,7 @@
     "text": "I was deeply impressed by the service by the team.",
     "id": "c101s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -108,12 +78,7 @@
     "text": "The suite was wonderful and luxurious.",
     "id": "c101s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -128,12 +93,7 @@
     "text": "The room is tidy and comfort",
     "id": "c101s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -148,12 +108,7 @@
     "text": "This is wonderful environment for our leisure stay",
     "id": "c101s9",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -174,12 +129,7 @@
     "text": "The hotel also locates close to the major landmarks in Macau",
     "id": "c101s10",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -187,12 +137,7 @@
     "text": "This is a wonderful and the best 5 stars resort for my frequent visit to Macau and it worths for every dollar I paid both for the service and facility in Conrad Macau",
     "id": "c101s11",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -207,12 +152,7 @@
     "text": " I would surely recommend this hotel for my",
     "id": "c101s12",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -220,12 +160,7 @@
     "text": "Inga thank you for your warm welcome and kindness by giving us a nice executive room for our stay in JW Marriott",
     "id": "c102s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -233,12 +168,7 @@
     "text": "I took wonderful time there for celebrate birthday",
     "id": "c102s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -246,12 +176,7 @@
     "text": "i'm lookinfg forward next stay",
     "id": "c102s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -259,12 +184,7 @@
     "text": "thank you again Inga",
     "id": "c102s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -272,12 +192,7 @@
     "text": "Me and may family (my wife, 2 kids-12 and 9 yrs old) stayed for 2 days",
     "id": "c103s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -285,12 +200,7 @@
     "text": "We thoroughly enjoyed our stay",
     "id": "c103s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -305,12 +215,7 @@
     "text": "The hotel room is quite spacious for 4 of us",
     "id": "c103s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -325,12 +230,7 @@
     "text": "No need to take extra bed",
     "id": "c103s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -345,12 +245,7 @@
     "text": "We took Cotai view and view of other casinos - city of dreams, Crown, Hard rock cafe and Hyatt was great",
     "id": "c103s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -365,12 +260,7 @@
     "text": "At night, we would just sit and watch all the lighting in these casinos",
     "id": "c103s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -378,12 +268,7 @@
     "text": "I took Shopt and pamper package - which gave me free Zaia tickets, breakfast and 10 min fish massage apart from free ferry ticket back to Hongkong",
     "id": "c103s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -391,12 +276,7 @@
     "text": "If you don't get this package",
     "id": "c103s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -404,12 +284,7 @@
     "text": "they also had on-the-spot package for Zaia, breakfast etc",
     "id": "c103s9",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -417,12 +292,7 @@
     "text": "I got Indian food in Cafe deco and Fogo Samba",
     "id": "c103s10",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -430,12 +300,7 @@
     "text": "Other than that, Venetian food court on level 3 also had 2 restarants which were serving Indian Dishes",
     "id": "c103s11",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -450,12 +315,7 @@
     "text": "We also used their swimming pool and",
     "id": "c103s12",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -470,12 +330,7 @@
     "text": "I stayed at the Conrad Cotai Central for 2 nights and had a wonderful time.",
     "id": "c104s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -483,12 +338,7 @@
     "text": "The service was great, the facilities were exactly what we needed, the location was great, and the room service was outstanding!!",
     "id": "c104s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -521,12 +371,7 @@
     "text": "The room set up and design was great, just loved everything about our time here (except they could have been a bit more lenient with their check out time",
     "id": "c104s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -553,12 +398,7 @@
     "text": "we arrived pretty late at night bc of travel delays, but they still said there was no way we could check out later than noon on our last day)",
     "id": "c104s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -566,12 +406,7 @@
     "text": "Anyway, the service and everything else were so great that I can overlook that minor disappointment :)",
     "id": "c104s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -586,12 +421,7 @@
     "text": "Wonderful hotel in the middle of the historic centre of Macau",
     "id": "c105s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -599,12 +429,7 @@
     "text": "The hotel has wonderful views over the water and the Heritage listed city centre",
     "id": "c105s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -619,12 +444,7 @@
     "text": "Thoroughly enjoyed the Michael Jackson in-house museum",
     "id": "c105s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -632,12 +452,7 @@
     "text": "We spent a week at the Venetian and it was simply spectacular",
     "id": "c106s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -645,12 +460,7 @@
     "text": "We have suites which were beautifully decorated, huge and spotless clean",
     "id": "c106s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -665,12 +475,7 @@
     "text": "The hotel has incredible shopping, fantastic restaurants and links easily with other gorgeous properties such as The Parisian and The Four Seasons",
     "id": "c106s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -691,12 +496,7 @@
     "text": "The small outdoor pool (1 of 3) was over 18's which suited us perfectly",
     "id": "c106s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -711,12 +511,7 @@
     "text": "If you r fond of gambling and going with wife, this is the place to stay",
     "id": "c107s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -724,12 +519,7 @@
     "text": "Once in the hotel and in shopping areas, you can slip down to casinos and she wont be bothering you for hour",
     "id": "c107s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -737,12 +527,7 @@
     "text": " Good brands to shop for. Unfortunately, we went in october and winter had set in for this part of the world and coming from india, Boss lady couldnt shop much as its anyway hot in india generally",
     "id": "c107s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -750,12 +535,7 @@
     "text": "But this was second trip for me to Venetian Macau and its worth it.",
     "id": "c107s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -763,12 +543,7 @@
     "text": "The service is first rate, and no lines for checkin and checkout like many hotels",
     "id": "c108s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -783,12 +558,7 @@
     "text": "The executive lounge had an excellent choice of food and beverage",
     "id": "c108s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -815,12 +585,7 @@
     "text": "The breakfast at the Grand Orbit was superb, and the spa was a 10",
     "id": "c108nan",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -841,12 +606,7 @@
     "text": "We had a great time here again recently.",
     "id": "c109s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -854,12 +614,7 @@
     "text": "The Hotel was busy , indeed humming with activity",
     "id": "c109s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -867,12 +622,7 @@
     "text": "but we still managed to get personalised service and the appropriate assistance from the appropriate staff staff when it was required",
     "id": "c109s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -893,12 +643,7 @@
     "text": "The gymnasium and extensive pool facilities were also inspiring during this \\'last of the hot weather\" change of season time of year.",
     "id": "c109s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -919,12 +664,7 @@
     "text": "We used our SPG reward point for our 2 day stay in Macau",
     "id": "c110s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -932,12 +672,7 @@
     "text": "Located in the famous Cotai strip it is  most conveniently located within the cluster of all other hotels like Venetian, Hard Rock hotel etc",
     "id": "c110s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -952,12 +687,7 @@
     "text": "We had a junior suite to ourselves , super luxurious and comfortable",
     "id": "c110s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -972,12 +702,7 @@
     "text": "Decent spread at breakfast in lounge and in case you don't have access to lounge there is a food court and good number of restaurants located within the complex",
     "id": "c110s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1010,12 +735,7 @@
     "text": "Ofcorse the biggest attraction point is Casino there are two on the ground level and if you are the gambling variety there are plenty of high end shopping experience, either way you will end up spending money :)",
     "id": "c110s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1030,12 +750,7 @@
     "text": "We have a good experience during stay Sheraton Macao this time and thank you again on the birthday surprise",
     "id": "c111s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1050,12 +765,7 @@
     "text": "At first, front desk's workmate (sorry that, I cant remember her name) reminded me to entitle 20% off discount which is I have meal on hotels outlet so that we have afternoon tea set at Palms as well",
     "id": "c111s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1070,12 +780,7 @@
     "text": "Secondary, handy is really a simple tools to connect Internet access all the time and make local call, it is very warm's tools for tourist",
     "id": "c111s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1090,12 +795,7 @@
     "text": "I thought I will stay Sheraton Macao for next Macao trip",
     "id": "c111s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1103,12 +803,7 @@
     "text": "ps",
     "id": "c111s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1116,12 +811,7 @@
     "text": "I like yours gym and sauna room as well",
     "id": "c111s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1136,12 +826,7 @@
     "text": "ps",
     "id": "c111s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1149,12 +834,7 @@
     "text": "madeleine very yummy, and the b-day card very cute",
     "id": "c111s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1162,12 +842,7 @@
     "text": "it was great experience staying in sheraton macau",
     "id": "c112s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1182,12 +857,7 @@
     "text": "the hotel was nice, and twas the center of the places we needed to go to",
     "id": "c112s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1195,12 +865,7 @@
     "text": "the whole hotel staff was awesome.",
     "id": "c112s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1215,12 +880,7 @@
     "text": "everybody was friendly and accomodating",
     "id": "c112s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1228,12 +888,7 @@
     "text": "special shout out to samuel, jethro, sheena and brent!",
     "id": "c112s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1241,12 +896,7 @@
     "text": "you made the experience more pleasant :)",
     "id": "c112s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1261,12 +911,7 @@
     "text": "Nice interiors",
     "id": "c113s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1281,12 +926,7 @@
     "text": "Big brand new hotel with huge shopping malls that combine all 4 into 1 - Shoppes at Four Seasons, Shoppes at Venetian, Shoppes at Parisian, Shoppes at Cotai Central",
     "id": "c113s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1301,12 +941,7 @@
     "text": "Great walk around experience.",
     "id": "c113s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1314,12 +949,7 @@
     "text": "Catch your free bus shuttle rides from Immigration Terminal",
     "id": "c113s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1334,12 +964,7 @@
     "text": "Runs frequently every 15-20 minutes",
     "id": "c113s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1347,12 +972,7 @@
     "text": "i chose this hotel bec i've been heard about it for years besides the amazing photos i saw online",
     "id": "c114s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1360,12 +980,7 @@
     "text": "yes the decoration is very luxurious, but the service is not.",
     "id": "c114s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1386,12 +1001,7 @@
     "text": "they charge $160 for 24hrs internet, however, on my  2nd nite there, i cannot log into the payment page",
     "id": "c114s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1399,12 +1009,7 @@
     "text": "means that even i want to pay for internet, they don't give me the chance",
     "id": "c114s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1412,12 +1017,7 @@
     "text": "the IT came to mend for the whole nite yet useless",
     "id": "c114s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1425,12 +1025,7 @@
     "text": " besides the food is also plain had 3breakfast, no comments",
     "id": "c114s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "negative",
@@ -1445,12 +1040,7 @@
     "text": "Stayed at this massive 4000-room hotel last weekend",
     "id": "c115s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1458,12 +1048,7 @@
     "text": "Great location to all the branded stores and very convenient to walk across to The Venetian via the sky bridge",
     "id": "c115s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1478,12 +1063,7 @@
     "text": "The rooms are comfortable and clean but I can hear the construction works across the street",
     "id": "c115s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1498,12 +1078,7 @@
     "text": "I am totally impressive with their breakfast operations in one of their many ballrooms",
     "id": "c115s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1518,12 +1093,7 @@
     "text": "Despite the crowd, the chef was happy to cook my special order of egg white only omelette",
     "id": "c115s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1531,12 +1101,7 @@
     "text": "The staff refilled our coffee without asking",
     "id": "c115s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1551,12 +1116,7 @@
     "text": "The hostess at the entrance attempted to address me by name",
     "id": "c115s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1564,12 +1124,7 @@
     "text": "Kudos to the management",
     "id": "c115s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1577,12 +1132,7 @@
     "text": "Grand Hyatts are the best of of the Hyatt hotels and the GH Macau is no exception",
     "id": "c116s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1590,12 +1140,7 @@
     "text": "An absolutely stunning structure, the hotel is located in the City of Dreams area and is very close to both the airport and the ferry terminals",
     "id": "c116s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1610,12 +1155,7 @@
     "text": "Macau itself is rather small and all the hotels are well connected",
     "id": "c116s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1623,12 +1163,7 @@
     "text": "There's a free City of Dreams shuttle coming to the hotel every 15 mins or so",
     "id": "c116s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1643,12 +1178,7 @@
     "text": "I had visited the hotel for a conference and the hotel has sufficient infrastructure to cater to even large business meetings",
     "id": "c116s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1663,12 +1193,7 @@
     "text": "There's 1 full floor with large ballrooms, meeting and conference rooms",
     "id": "c116s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1695,12 +1220,7 @@
     "text": "There are basically 2 towers",
     "id": "c116s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1708,12 +1228,7 @@
     "text": "Grand and Grand Club",
     "id": "c116s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1721,12 +1236,7 @@
     "text": "and I got a room in the Grand Club",
     "id": "c116s9",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1741,12 +1251,7 @@
     "text": "The room was spacious with 2 large twin beds, a more than sufficient closet area and a well-equipped and spacious",
     "id": "c116s10",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1773,12 +1278,7 @@
     "text": "This was my first time to Macau and could not have picked at better location for a hotel",
     "id": "c117s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1793,12 +1293,7 @@
     "text": "the hotel was 5 mins walk to the old part of Macau and what a wonder that was",
     "id": "c117s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1806,12 +1301,7 @@
     "text": "Easy access to everything either by bus, walking or taxi",
     "id": "c117s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1826,12 +1316,7 @@
     "text": "The hotel itself was brilliant from the time we checked in, the room was spacious, clean very very comfortable with a lovely view of the river, facilities second to none and their room service was impeccable",
     "id": "c117s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1858,12 +1343,7 @@
     "text": "Price was excellent and the service and the smiles of all the staff were second to none",
     "id": "c117s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -1884,12 +1364,7 @@
     "text": "Would I stay there again absolutely",
     "id": "c117s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1897,12 +1372,7 @@
     "text": "While staying at the hotel were all very happy family",
     "id": "c118s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1910,12 +1380,7 @@
     "text": "Breakfast buffet food types can vary, but it could do with some further enhanced the quality of the food",
     "id": "c118s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -1930,12 +1395,7 @@
     "text": "I want to visit again later. Hotels are sufficient to make good memories",
     "id": "c118s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1943,12 +1403,7 @@
     "text": "Honestly, I cannot follow many of those who posted the review here on Tripadvisor",
     "id": "c119s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1956,12 +1411,7 @@
     "text": "but so be it",
     "id": "c119s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -1969,12 +1419,7 @@
     "text": "I just stayed recently at it was most likely by far the worst experience I had in a so called 5* hotel over the past couple of years",
     "id": "c119s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "negative",
@@ -1989,12 +1434,7 @@
     "text": "It starts already with the feeling of being a number instead a guest that you have to line up for check in",
     "id": "c119s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2009,12 +1449,7 @@
     "text": "that alone is already not 5* but the fact the the check in process is slow and many counters are not manned is another fact.",
     "id": "c119s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "negative",
@@ -2029,12 +1464,7 @@
     "text": "The check in was not organized at all and took over 10 minutes leaving the waiting time aside",
     "id": "c119s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "negative",
@@ -2049,12 +1479,7 @@
     "text": "The staffs was not well trained neither customer oriented",
     "id": "c119s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "negative",
@@ -2069,12 +1494,7 @@
     "text": "That the lobby has no charm as it is permanently overrun by game machines is a fact that you have to accept when you are in Macau",
     "id": "c119s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "negative",
@@ -2089,12 +1509,7 @@
     "text": "The whole ambiance just feels odd",
     "id": "c119s9",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2102,12 +1517,7 @@
     "text": "The best experience we have had so far",
     "id": "c120s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -2122,12 +1532,7 @@
     "text": "The staff was very courteous - and upgraded to 28th Floor and a fantastic pool view",
     "id": "c120s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -2148,12 +1553,7 @@
     "text": " A spectacular view from the 28th floor and room was magnificent",
     "id": "c120s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2161,12 +1561,7 @@
     "text": "The staff treated us so well",
     "id": "c120s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -2181,12 +1576,7 @@
     "text": "From front office to urban kitchen, concierge, security, every person we met were so wonderful, we fell in love with the place and people",
     "id": "c120s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -2213,12 +1603,7 @@
     "text": "If you are reading this, we are loss of words to explain the wonderful experience we have had.",
     "id": "c120s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -2233,12 +1618,7 @@
     "text": "We will surely go there again and again. ",
     "id": "c120s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2246,12 +1626,7 @@
     "text": "We are vegetarians and for us we have had very little choice",
     "id": "c120s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2259,12 +1634,7 @@
     "text": "The hotel provides free bus shuttle facility to the city center, airport and to the ferry",
     "id": "c120s9",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2279,12 +1649,7 @@
     "text": "Ambience of the hotel interiors superb",
     "id": "c120s10",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2292,12 +1657,7 @@
     "text": "The suite in FS is mush bigger and with much amenities in the room",
     "id": "c121s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2318,12 +1678,7 @@
     "text": "You just won't expect you need to ask for a DVD when you stayed at the club suite which I will think it is something very basic",
     "id": "c121s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2338,12 +1693,7 @@
     "text": "But you need to call them to ask for a DVD, then they told you we have to wait since it may not be available (Can you imagine you need to share this machine with the guests from both Holiday Inn and Conrad!)",
     "id": "c121s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2351,12 +1701,7 @@
     "text": "Then what till the DVD arrived, it\"",
     "id": "c121s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2364,12 +1709,7 @@
     "text": "When in Macao you want to be in a classic hotel and the Venetian Macao is just about it",
     "id": "c122s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2377,12 +1717,7 @@
     "text": "We went there with kids and seniors and had a great time.",
     "id": "c122s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2390,12 +1725,7 @@
     "text": "Their in house kids club called Qube is an excellent child entertainment facility",
     "id": "c122s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2403,12 +1733,7 @@
     "text": "The pools are also fantastic",
     "id": "c122s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2423,12 +1748,7 @@
     "text": "The hotel is very new and doesnt smell like its Vegas cousin (its only 4 yrs old in 2011) and is well maintained.",
     "id": "c122s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2436,12 +1756,7 @@
     "text": "The breakfast buffet has three options the biggest spread being the most chaotic in their cafe.",
     "id": "c122s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2456,12 +1771,7 @@
     "text": " The hotel also shows the cirque du soleil show 'Zaia' which is the best Crique show I have ever seen in my life and is a must must see for everyone",
     "id": "c122s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2469,12 +1779,7 @@
     "text": "The food options are ample and its just convenient to be here.",
     "id": "c122s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2489,12 +1794,7 @@
     "text": "I got a massage at the spa and its quite an unreal spa & the staff is very skilled.",
     "id": "c122s9",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "conflict",
@@ -2515,12 +1815,7 @@
     "text": "If you are looking for a luxury hotel with true 5 star service when in Macau  then the Conrad is the place",
     "id": "c123s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -2535,12 +1830,7 @@
     "text": "The hotel is part of the casino and shopping complex which gives you easy access to all the amenities of a  mini Las Vegas",
     "id": "c123s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2573,12 +1863,7 @@
     "text": "You can also use the ferry terminal at Cotai is only a 10 minute ride away and there is a shuttle",
     "id": "c123s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2593,12 +1878,7 @@
     "text": "The ferries take you to either  Kowloon or straight to the airport",
     "id": "c123s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2606,12 +1886,7 @@
     "text": "If you want to see the Macau old town it is only a 10 minute taxi ride away",
     "id": "c123s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2619,12 +1894,7 @@
     "text": "The rooms are big which are unusual for Asian countries and they all have a great view over the area",
     "id": "c123s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2645,12 +1915,7 @@
     "text": "There is a good and big pool area with lots of space as well as a Spa with reasonable prices and excellent service",
     "id": "c123s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2677,12 +1942,7 @@
     "text": "The executive lounge is big and extends to both sides of the hotel, they have a great afternoon",
     "id": "c123s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "positive",
@@ -2697,12 +1957,7 @@
     "text": "In reservation stage,  the staffs were being so helpful",
     "id": "c124s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2710,12 +1965,7 @@
     "text": "Reply my enquiry quickly and offer a spa package which includes upgrade to suite,  one way transfer and club lounge benefits etc.",
     "id": "c124s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2723,12 +1973,7 @@
     "text": "All I thought was I could finally find a hotel in Macau that provide good service.",
     "id": "c124s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2736,12 +1981,7 @@
     "text": "My experience was just bad",
     "id": "c124s4",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "negative",
@@ -2756,12 +1996,7 @@
     "text": "Early check in was accomondate",
     "id": "c124s5",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2769,12 +2004,7 @@
     "text": "But when I check in,  I asked the staff if I can have an air purifier. ",
     "id": "c124s6",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2795,12 +2025,7 @@
     "text": "He said I could call from the room because he doesnt recommend to have the machine on when I am still in the room.",
     "id": "c124s7",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2815,12 +2040,7 @@
     "text": "I felt weird with his statement but when I got into the room,  the machine was there.",
     "id": "c124s8",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2828,12 +2048,7 @@
     "text": "After I enjoyed a relaxing Shine spa,  i was resting in my room.",
     "id": "c124s9",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2848,12 +2063,7 @@
     "text": "One staff broke into my room without ringing the bell or knock on the door",
     "id": "c124s10",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2861,12 +2071,7 @@
     "text": "The manager replied the",
     "id": "c124s11",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   },
@@ -2874,12 +2079,7 @@
     "text": "Stayed overnightas part of business trip and therefore was frustrated at the length of time it took to check in",
     "id": "c125s1",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "negative",
@@ -2894,12 +2094,7 @@
     "text": "There were only 3 in our party and the rooms were booked in advance so really couldn't see why it took so long",
     "id": "c125s2",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": [
         {
           "polarity": "neutral",
@@ -2914,12 +2109,7 @@
     "text": "Putting that aside the hotel is awesome and the room we stayed in was very spacious and had fantastic views.",
     "id": "c125s3",
     "opinions": {
-      "aspect_category": [
-        {
-          "category": "food",
-          "polarity": "positive"
-        }
-      ],
+      "aspect_category": [],
       "aspect_term": []
     }
   }

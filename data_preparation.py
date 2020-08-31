@@ -18,26 +18,26 @@ base_path = sys.path[0]
 data_origin_path = base_path + '/data/data_origin/hotel_test.xlsx'
 data_processed_path = base_path + '/data/data_processed/hotel_test.json'
 
-# transformer = Transform()
-#
-# transformer.get_data(data_origin_path)
-#
-# data = transformer.data_origin
-#
-# # text_id = transformer.get_id(114)
-# # text = transformer.get_text(114)
-# #
-# # transformer.get_aspect_term(114)
-#
-# transformer.write()
-# transformer.write_json(data_processed_path)
+transformer = Transform()
 
-data_path = base_path + '/data/data_processed/ABSA Dataset/'
-save_path = base_path + '/data/data_processed/'
-dataset_list = ['train', 'test']
-for dataset in dataset_list:
-    absa = ABSA()
-    absa.set_dataset_name(['restaurants14', 'restaurants15', 'restaurants16'])
-    absa.pack_data(data_path, dataset)
-    absa.write_json(save_path, dataset)
+transformer.get_data(data_origin_path)
+
+data = transformer.data_origin
+
+# text_id = transformer.get_id(114)
+# text = transformer.get_text(114)
+#
+# transformer.get_aspect_term(114)
+
+transformer.write()
+transformer.write_json(data_processed_path)
+
+# data_path = base_path + '/data/data_processed/ABSA Dataset/'
+# save_path = base_path + '/data/data_processed/'
+# dataset_list = ['train', 'test']
+# for dataset in dataset_list:
+#     absa = ABSA()
+#     absa.set_dataset_name(['restaurants14', 'restaurants15', 'restaurants16'])
+#     absa.pack_data(data_path, dataset)
+#     absa.write_json(save_path, dataset)
 
