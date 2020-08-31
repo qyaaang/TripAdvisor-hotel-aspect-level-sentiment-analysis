@@ -20,7 +20,7 @@ class Transform:
     def __init__(self):
         self.data_origin = None  # Original data
         self.data_processed = []  # Processed data
-        self.aspect_category = [{'category': 'food', 'polarity': 'positive'}]  # Default aspect category
+        self.aspect_category = []  # Default aspect category
         self.polarity_symbol = {'+': 'positive', '-': 'negative', '0': 'neutral', 'c': 'conflict'}
 
     def get_data(self, data_path):
