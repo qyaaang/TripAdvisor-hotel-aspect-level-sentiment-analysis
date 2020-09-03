@@ -1,0 +1,8 @@
+.DS_Store
+.idea/
+__pycache__/
+data_processing/__pycache__/
+data_processing/.DS_Store
+layers/__pycache__/
+layers/.DS_Store
+models/__pycache__/
