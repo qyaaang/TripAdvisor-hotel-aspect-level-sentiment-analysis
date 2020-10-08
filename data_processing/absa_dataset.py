@@ -49,3 +49,17 @@ class ABSA:
         file_name = 'ABSA_restaurants_{}.json'.format(dataset)
         with open(save_path + file_name, 'w') as f:
             f.write(data)
+
+
+if __name__ == '__main__':
+    with open('/Users/qunyang/Dropbox (Personal)/Vivian/Tripadvisor hotel aspect-level sentiment analysis/'
+              'data/data_processed/ABSA_restaurants_train.json') as f:
+        absa_dataset = json.load(f)
+    with open('/Users/qunyang/Dropbox (Personal)/Vivian/Tripadvisor hotel aspect-level sentiment analysis/'
+              'data/data_processed/TripAdvisor_hotel_train.json') as f:
+        tripadvisor_dataset = json.load(f)
+    data = absa_dataset + tripadvisor_dataset
+    data = json.dumps(data, indent=2)
+    with open('/Users/qunyang/Dropbox (Personal)/Vivian/Tripadvisor hotel aspect-level sentiment analysis/'
+              'data/data_processed/data.json', 'w') as f:
+        f.write(data)

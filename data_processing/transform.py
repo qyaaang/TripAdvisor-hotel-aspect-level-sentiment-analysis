@@ -17,7 +17,8 @@ import json
 
 class Transform:
 
-    def __init__(self):
+    def __init__(self, mode):
+        self.mode = mode
         self.data_origin = None  # Original data
         self.data_processed = []  # Processed data
         self.aspect_category = []  # Default aspect category
@@ -25,10 +26,10 @@ class Transform:
 
     def get_data(self, data_path):
         """
-        Retrieve original annotated data in xlsx format
+        Retrieve split annotated data in csv format
         :param data_path:
         """
-        self.data_origin = pd.read_excel(data_path, header=None)
+        self.data_origin = pd.read_csv(data_path, header=None)
 
     def get_text(self, row_idx):
         """
@@ -117,6 +118,7 @@ class Transform:
     def write(self):
         """
 
+        :return:
         """
         for row_idx in range(len(self.data_origin)):
             content = {}
@@ -130,11 +132,11 @@ class Transform:
             content['opinions']['aspect_term'] = aspect_term_list
             self.data_processed.append(content)
 
-    def write_json(self, data_path):
+    def write_json(self, base_path):
         """
 
-        :param data_path:
+        :param base_path:
         """
         data_processed = json.dumps(self.data_processed, indent=2)
-        with open(data_path, 'w') as f:
+        with open('{}/data/data_processed/TripAdvisor_hotel_{}.json'.format(base_path, self.mode), 'w') as f:
             f.write(data_processed)
