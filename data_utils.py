@@ -8,6 +8,7 @@ from data_processing.clean import process_text
 import copy
 
 base_path = sys.path[0] + "/data/"
+model_path = '/Users/qunyang/Dropbox (Personal)/Vivian/Pre-trained word vectors'  # Pre-trained word vectors
 # print(base_path)
 sentiment_map = {
     'positive': 2,
@@ -34,8 +35,10 @@ def build_embedding_matrix(word2idx, embed_dim, type):
     else:
         print('loading word vectors...')
         embedding_matrix = np.zeros((len(word2idx) + 2, embed_dim))  # idx 0 and len(word2idx)+1 are all-zeros
-        fname = base_path + 'store/glove.twitter.27B.' + str(embed_dim) + 'd.txt' \
-            if embed_dim != 300 else base_path + 'store/glove.840B.300d.txt'
+        # fname = base_path + 'store/glove.twitter.27B.' + str(embed_dim) + 'd.txt' \
+        #     if embed_dim != 300 else base_path + 'store/glove.840B.300d.txt'
+        fname = '{}/glove.840B.300d.txt'.format(model_path) \
+            if embed_dim == 300 else '{}/glove.twitter.27B/glove.twitter.27B.{}d.txt'.format(model_path, embed_dim)
         word_vec = load_word_vec(fname, word2idx=word2idx)
         print('building embedding_matrix:', embedding_matrix_file_name)
         for word, i in word2idx.items():
@@ -58,8 +61,10 @@ def build_aspect_embedding_matrix(word2idx, embed_dim, type):
     else:
         print('loading word vectors...')
         aspect_embedding_matrix = np.zeros((len(word2idx) + 2, embed_dim))  # idx 0 and len(word2idx)+1 are all-zeros
-        fname = base_path + 'store/glove.twitter.27B.' + str(embed_dim) + 'd.txt' \
-            if embed_dim != 300 else base_path + 'store/glove.840B.300d.txt'
+        # fname = base_path + 'store/glove.twitter.27B.' + str(embed_dim) + 'd.txt' \
+        #     if embed_dim != 300 else base_path + 'store/glove.840B.300d.txt'
+        fname = '{}/glove.840B.300d.txt'.format(model_path) \
+            if embed_dim == 300 else '{}/glove.twitter.27B/glove.twitter.27B.{}d.txt'.format(model_path, embed_dim)
         word_vec = load_word_vec(fname, word2idx=word2idx)
         print('building embedding_matrix:', aspect_embedding_matrix_file_name)
         for word, i in word2idx.items():
