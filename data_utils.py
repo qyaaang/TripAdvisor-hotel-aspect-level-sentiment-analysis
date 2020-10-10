@@ -146,9 +146,9 @@ class TripadvisorDatasetReader:
     def __init__(self, dataset='TripAdvisor hotel', embed_dim=300, max_seq_len=-1):
         print("preparing {0} dataset...".format(dataset))
         fname = {
-            'ABSA restaurants': {
-                'train': base_path + 'data_processed/ABSA_restaurants_train.json',
-                'test': base_path + 'data_processed/ABSA_restaurants_test.json'
+            'ABSA': {
+                'train': base_path + 'data_processed/ABSA_dataset_train.json',
+                'test': base_path + 'data_processed/ABSA_dataset_test.json'
             },
             'TripAdvisor hotel': {
                 'train': base_path + 'data_processed/TripAdvisor_hotel_train.json',

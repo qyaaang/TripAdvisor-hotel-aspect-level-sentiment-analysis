@@ -9,7 +9,11 @@ from collections import Counter
 from data_utils import TripadvisorDatasetReader
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, f1_score, recall_score, precision_score
+from sklearn.metrics import confusion_matrix
+from plot_utils import plot_confusion_matrix
+import matplotlib.pyplot as plt
 import argparse
+import json
 
 from models.ContextAvg import ContextAvg
 from models.AE_ContextAvg import AEContextAvg
@@ -104,6 +108,7 @@ class BaseExperiment:
         self.mdl.encoder_aspect.weight.requires_grad = True
         self.mdl.to(device)
         self.criterion = nn.CrossEntropyLoss()
+        self.learning_history = {}
 
     def reset_parameters(self):
         n_trainable_params, n_nontrainable_params = 0, 0
@@ -206,14 +211,28 @@ class BaseExperiment:
         best_result = None
         global_step = 0
         self.select_optimizer()
+        losses_train = []
+        accuracy_train, accuracy_validation = [], []
         for epoch in range(self.args.num_epoch):
             losses = []
             self.mdl.train()
             t0 = time.time()
+            outputs_train, targets_train = None, None
             for i_batch, sample_batched in enumerate(self.train_data_loader):
                 global_step += 1
                 loss = self.train_batch(sample_batched)
                 losses.append(loss)
+                output_train, target_train = self.evaluation(sample_batched)
+                if outputs_train is None:
+                    outputs_train = output_train
+                else:
+                    outputs_train = np.concatenate((outputs_train, output_train))
+
+                if targets_train is None:
+                    targets_train = target_train
+                else:
+                    targets_train = np.concatenate((targets_train, target_train))
+            results_train = self.metric(targets=targets_train, outputs=outputs_train)
             t1 = time.time()
             self.mdl.eval()
             if self.args.dev > 0.0:
@@ -271,11 +290,22 @@ class BaseExperiment:
                                                                                             self.args.dev)
                         torch.save(self.mdl.state_dict(), path)
                         best_result = result
-            print('[Epoch {:>4}] Train loss={:.5f} Train accuracy={:.5f}% Time cost={:.5f}s'.format(epoch + 1,
-                                                                                                    np.mean(losses),
-                                                                                                    result['acc'] * 100,
-                                                                                                    t1 - t0))
-        return best_result
+            print('\033[1;31m[Epoch {:>4}]\033[0m  '
+                  '\033[1;31mTrain loss={:.5f}\033[0m  '
+                  '\033[1;32mTrain accuracy={:.2f}%\033[0m  '
+                  '\033[1;33mValidation accuracy={:.2f}%\033[0m  '
+                  'Time cost={:.2f}s'.format(epoch + 1,
+                                             np.mean(losses),
+                                             results_train['acc'] * 100,
+                                             result['acc'] * 100,
+                                             t1 - t0))
+            losses_train.append(np.mean(losses))
+            accuracy_train.append(results_train['acc'])
+            accuracy_validation.append(result['acc'])
+        self.learning_history['Loss'] = np.array(losses_train).tolist()
+        self.learning_history['Training accuracy'] = np.array(accuracy_train).tolist()
+        self.learning_history['Validation accuracy'] = np.array(accuracy_validation).tolist()
+        self.learning_history['Best Validation accuracy'] = best_acc
 
     def test(self):
         path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}.model'.format(self.args.model_name, self.args.dataset,
@@ -284,11 +314,6 @@ class BaseExperiment:
                                                                             self.args.max_seq_len, self.args.dropout,
                                                                             self.args.softmax, self.args.batch_size,
                                                                             self.args.dev)
-        ans_file = save_path + 'ans/{}_{}_{}_{}_{}_{}_{}_{}_{}.txt'.format(self.args.model_name, self.args.dataset,
-                                                                           self.args.optimizer, self.args.learning_rate,
-                                                                           self.args.max_seq_len, self.args.dropout,
-                                                                           self.args.softmax, self.args.batch_size,
-                                                                           self.args.dev)
         self.mdl.load_state_dict(self.load_model(path))
         self.mdl.eval()
         outputs, targets = None, None
@@ -303,15 +328,43 @@ class BaseExperiment:
                 if targets is None:
                     targets = target
                 else:
-                    targets = np.concatenateTD_LSTM((targets, target))
-        # result = self.metric(targets=targets, outputs=output, save_path=ans_file)
+                    targets = np.concatenate((targets, target))
         result = self.metric(targets=targets, outputs=output)
-        print('Test accuracy:{:.5f}%, macro_f1:{:.5f}'.format(result['acc'] * 100, result['macro_f1']))
-        return result
+        print('\033[1;32mTest accuracy:{:.2f}%, macro_f1:{:.5f}\033[0m'.
+              format(result['acc'] * 100, result['macro_f1']))
+        self.learning_history['Test accuracy'] = result['acc']
+        # Plot confusion matrix
+        class_names = ['negative', 'neutral', 'positive']
+        cnf_matrix = confusion_matrix(targets, outputs)
+        plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix', normalize=False)
+        plt.savefig('./result/figures/'
+                    '{}_{}_{}_{}_{}_{}_{}_{}_{}.png'.format(self.args.model_name,
+                                                            self.args.dataset,
+                                                            self.args.optimizer,
+                                                            self.args.learning_rate,
+                                                            self.args.max_seq_len,
+                                                            self.args.dropout,
+                                                            self.args.softmax,
+                                                            self.args.batch_size,
+                                                            self.args.dev))
 
-    def transfer_model(self):
+    def save_learning_history(self):
+        data = json.dumps(self.learning_history, indent=2)
+        with open('./result/Learning history/'
+                  '{}_{}_{}_{}_{}_{}_{}_{}_{}.json'.format(self.args.model_name,
+                                                           self.args.dataset,
+                                                           self.args.optimizer,
+                                                           self.args.learning_rate,
+                                                           self.args.max_seq_len,
+                                                           self.args.dropout,
+                                                           self.args.softmax,
+                                                           self.args.batch_size,
+                                                           self.args.dev), 'w') as f:
+            f.write(data)
+
+    def transfer_learning(self):
         model_path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}.model'.format(self.args.model_name,
-                                                                                  self.args.source_dataset,
+                                                                                  self.args.pre_trained_model,
                                                                                   self.args.optimizer,
                                                                                   self.args.learning_rate,
                                                                                   self.args.max_seq_len,
@@ -320,24 +373,6 @@ class BaseExperiment:
                                                                                   self.args.batch_size,
                                                                                   self.args.dev)
         self.mdl.load_state_dict(self.load_model(model_path))
-        self.mdl.eval()
-        outputs, targets = None, None
-        with torch.no_grad():
-            for t_batch, t_sample_batched in enumerate(self.train_data_loader):
-                output, target = self.evaluation(t_sample_batched)
-                if outputs is None:
-                    outputs = output
-                else:
-                    outputs = np.concatenate((outputs, output))
-
-                if targets is None:
-                    targets = target
-                else:
-                    targets = np.concatenate((targets, target))
-        # result = self.metric(targets=targets, outputs=output, save_path=ans_file)
-        result = self.metric(targets=targets, outputs=output)
-        print('Test accuracy:{:.5f}%, macro_f1:{:.5f}'.format(result['acc'] * 100, result['macro_f1']))
-        return result
 
 
 if __name__ == '__main__':
@@ -345,7 +380,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', default='TD_LSTM', type=str)
     parser.add_argument('--dataset', default='TripAdvisor hotel', type=str)
-    parser.add_argument('--source_dataset', default='ABSA restaurants', type=str)
+    parser.add_argument('--pre_trained_model', default='ABSA', type=str)
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
     parser.add_argument('--learning_rate', default=0.001, type=float)
@@ -421,6 +456,7 @@ if __name__ == '__main__':
         'xavier_uniform_': torch.nn.init.xavier_uniform_,
         'xavier_normal_': torch.nn.init.xavier_normal,
         'orthogonal_': torch.nn.init.orthogonal_,
+        'kaiming_normal_': torch.nn.init.kaiming_normal_
     }
     args.model_class = model_classes[args.model_name]
     args.inputs_cols = input_colses[args.model_name]
@@ -428,6 +464,6 @@ if __name__ == '__main__':
     args.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     # args.batch_normalizations = False
     exp = BaseExperiment(args)
-    result_train = exp.train()
-    result_test = exp.test()
-    # result = exp.transfer_model()
+    exp.train()
+    exp.test()
+    exp.save_learning_history()
