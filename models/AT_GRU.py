@@ -18,6 +18,11 @@ class AT_GRU(nn.Module):
         self.dropout = nn.Dropout(args.dropout)
 
     def forward(self, inputs):
+        """
+
+        :param inputs:
+        :return:
+        """
         text_raw_indices = inputs[0]
         x = self.encoder(text_raw_indices)
         x = self.dropout(x)
