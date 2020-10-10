@@ -30,15 +30,17 @@ class Visualization:
                      }
 
     def get_data(self):
-        file_name = './result/learning history/{}_{}_{}_{}_{}_{}_{}_{}_{}.json'.format(self.args.model_name,
-                                                                                       self.args.dataset,
-                                                                                       self.args.optimizer,
-                                                                                       self.args.learning_rate,
-                                                                                       self.args.max_seq_len,
-                                                                                       self.args.dropout,
-                                                                                       self.args.softmax,
-                                                                                       self.args.batch_size,
-                                                                                       self.args.dev)
+        file_name = './result/learning history/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.json'\
+                    .format(self.args.model_name,
+                            self.args.dataset,
+                            self.args.optimizer,
+                            self.args.learning_rate,
+                            self.args.weight_decay,
+                            self.args.dropout,
+                            self.args.batch_normalizations,
+                            self.args.softmax,
+                            self.args.batch_size,
+                            self.args.dev)
         with open(file_name) as f:
             self.data = json.load(f)
 
@@ -54,15 +56,17 @@ class Visualization:
         ax.set_xlabel('Epoch', fontdict=self.font)
         ax.set_ylabel('Accuracy (%)', fontdict=self.font)
         ax.legend(loc='lower right')
-        plt.savefig('./result/figures/{}_{}_{}_{}_{}_{}_{}_{}_{}_learning_curve.png'.format(self.args.model_name,
-                                                                                            self.args.dataset,
-                                                                                            self.args.optimizer,
-                                                                                            self.args.learning_rate,
-                                                                                            self.args.max_seq_len,
-                                                                                            self.args.dropout,
-                                                                                            self.args.softmax,
-                                                                                            self.args.batch_size,
-                                                                                            self.args.dev))
+        plt.savefig('./result/figures/{}_{}_{}_{}_{}_{}_{}_{}_{}_learning_curve.png'
+                    .format(self.args.model_name,
+                            self.args.dataset,
+                            self.args.optimizer,
+                            self.args.learning_rate,
+                            self.args.weight_decay,
+                            self.args.dropout,
+                            self.args.batch_normalizations,
+                            self.args.softmax,
+                            self.args.batch_size,
+                            self.args.dev))
         plt.show()
 
 
@@ -72,9 +76,9 @@ def main():
     parser.add_argument('--dataset', default='TripAdvisor hotel', type=str)
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--learning_rate', default=0.001, type=float)
-    parser.add_argument('--num_epoch', default=100, type=int)
+    parser.add_argument('--weight_decay', default=0.001, type=float)
     parser.add_argument('--batch_size', default=16, type=int)
-    parser.add_argument('--max_seq_len', default=80, type=int)
+    parser.add_argument('--batch_normalizations', action="store_true", default=False)
     parser.add_argument('--softmax', action="store_true", default=False)
     parser.add_argument('--dev', default=0.20, type=float)
     parser.add_argument('--dropout', default=0.50, type=float)

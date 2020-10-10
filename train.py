@@ -59,7 +59,6 @@ def tensor_to_numpy(x):
 
 
 class BaseExperiment:
-
     """
     Implements a base experiment class for Aspect-Based Sentiment Analysis
     """
@@ -98,8 +97,8 @@ class BaseExperiment:
                                            batch_size=len(tripadvisor_dataset.test_data),
                                            shuffle=False)
         self.target_data_loader = DataLoader(dataset=tripadvisor_dataset.test_data,
-                                           batch_size=len(tripadvisor_dataset.test_data),
-                                           shuffle=False)
+                                             batch_size=len(tripadvisor_dataset.test_data),
+                                             shuffle=False)
         self.mdl = args.model_class(self.args,
                                     embedding_matrix=tripadvisor_dataset.embedding_matrix,
                                     aspect_embedding_matrix=tripadvisor_dataset.aspect_embedding_matrix)
@@ -125,7 +124,8 @@ class BaseExperiment:
     def select_optimizer(self):
         if self.args.optimizer == 'Adam':
             self.optimizer = optim.Adam(filter(lambda p: p.requires_grad, self.mdl.parameters()),
-                                        lr=self.args.learning_rate)
+                                        lr=self.args.learning_rate,
+                                        weight_decay=self.args.weight_decay)
         elif self.args.optimizer == 'RMS':
             self.optimizer = optim.RMSprop(filter(lambda p: p.requires_grad, self.mdl.parameters()),
                                            lr=self.args.learning_rate)
@@ -252,15 +252,17 @@ class BaseExperiment:
                     result = self.metric(targets=targets, outputs=outputs)
                     if result['acc'] > best_acc:
                         best_acc = result['acc']
-                        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}.model'.format(self.args.model_name,
-                                                                                            self.args.dataset,
-                                                                                            self.args.optimizer,
-                                                                                            self.args.learning_rate,
-                                                                                            self.args.max_seq_len,
-                                                                                            self.args.dropout,
-                                                                                            self.args.softmax,
-                                                                                            self.args.batch_size,
-                                                                                            self.args.dev)
+                        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.model'. \
+                            format(self.args.model_name,
+                                   self.args.dataset,
+                                   self.args.optimizer,
+                                   self.args.learning_rate,
+                                   self.args.weight_decay,
+                                   self.args.dropout,
+                                   self.args.batch_normalizations,
+                                   self.args.softmax,
+                                   self.args.batch_size,
+                                   self.args.dev)
                         torch.save(self.mdl.state_dict(), path)
                         best_result = result
             else:
@@ -279,15 +281,17 @@ class BaseExperiment:
                     result = self.metric(targets=targets, outputs=outputs)
                     if result['acc'] > best_acc:
                         best_acc = result['acc']
-                        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}.model'.format(self.args.model_name,
-                                                                                            self.args.dataset,
-                                                                                            self.args.optimizer,
-                                                                                            self.args.learning_rate,
-                                                                                            self.args.max_seq_len,
-                                                                                            self.args.dropout,
-                                                                                            self.args.softmax,
-                                                                                            self.args.batch_size,
-                                                                                            self.args.dev)
+                        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.model'. \
+                            format(self.args.model_name,
+                                   self.args.dataset,
+                                   self.args.optimizer,
+                                   self.args.learning_rate,
+                                   self.args.weight_decay,
+                                   self.args.dropout,
+                                   self.args.batch_normalizations,
+                                   self.args.softmax,
+                                   self.args.batch_size,
+                                   self.args.dev)
                         torch.save(self.mdl.state_dict(), path)
                         best_result = result
             print('\033[1;31m[Epoch {:>4}]\033[0m  '
@@ -308,12 +312,17 @@ class BaseExperiment:
         self.learning_history['Best Validation accuracy'] = best_acc
 
     def test(self):
-        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}.model'.format(self.args.model_name, self.args.dataset,
-                                                                            self.args.optimizer,
-                                                                            self.args.learning_rate,
-                                                                            self.args.max_seq_len, self.args.dropout,
-                                                                            self.args.softmax, self.args.batch_size,
-                                                                            self.args.dev)
+        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.model'. \
+            format(self.args.model_name,
+                   self.args.dataset,
+                   self.args.optimizer,
+                   self.args.learning_rate,
+                   self.args.weight_decay,
+                   self.args.dropout,
+                   self.args.batch_normalizations,
+                   self.args.softmax,
+                   self.args.batch_size,
+                   self.args.dev)
         self.mdl.load_state_dict(self.load_model(path))
         self.mdl.eval()
         outputs, targets = None, None
@@ -338,28 +347,32 @@ class BaseExperiment:
         cnf_matrix = confusion_matrix(targets, outputs)
         plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix', normalize=False)
         plt.savefig('./result/figures/'
-                    '{}_{}_{}_{}_{}_{}_{}_{}_{}.png'.format(self.args.model_name,
-                                                            self.args.dataset,
-                                                            self.args.optimizer,
-                                                            self.args.learning_rate,
-                                                            self.args.max_seq_len,
-                                                            self.args.dropout,
-                                                            self.args.softmax,
-                                                            self.args.batch_size,
-                                                            self.args.dev))
+                    '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.png'
+                    .format(self.args.model_name,
+                            self.args.dataset,
+                            self.args.optimizer,
+                            self.args.learning_rate,
+                            self.args.weight_decay,
+                            self.args.dropout,
+                            self.args.batch_normalizations,
+                            self.args.softmax,
+                            self.args.batch_size,
+                            self.args.dev))
 
     def save_learning_history(self):
         data = json.dumps(self.learning_history, indent=2)
-        with open('./result/Learning history/'
-                  '{}_{}_{}_{}_{}_{}_{}_{}_{}.json'.format(self.args.model_name,
-                                                           self.args.dataset,
-                                                           self.args.optimizer,
-                                                           self.args.learning_rate,
-                                                           self.args.max_seq_len,
-                                                           self.args.dropout,
-                                                           self.args.softmax,
-                                                           self.args.batch_size,
-                                                           self.args.dev), 'w') as f:
+        with open('./result/learning history/'
+                  '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.json'
+                  .format(self.args.model_name,
+                          self.args.dataset,
+                          self.args.optimizer,
+                          self.args.learning_rate,
+                          self.args.weight_decay,
+                          self.args.dropout,
+                          self.args.batch_normalizations,
+                          self.args.softmax,
+                          self.args.batch_size,
+                          self.args.dev), 'w') as f:
             f.write(data)
 
     def transfer_learning(self):
@@ -384,6 +397,7 @@ if __name__ == '__main__':
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
     parser.add_argument('--learning_rate', default=0.001, type=float)
+    parser.add_argument('--weight_decay', default=0.001, type=float)
     parser.add_argument('--num_epoch', default=100, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
     parser.add_argument('--gpu', default=0, type=int)
