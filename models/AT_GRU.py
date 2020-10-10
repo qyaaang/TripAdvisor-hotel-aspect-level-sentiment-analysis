@@ -5,6 +5,7 @@ from layers.Attention import BasicAttention
 
 
 class AT_GRU(nn.Module):
+
     def __init__(self, args, embedding_matrix=None, aspect_embedding_matrix=None):
         super(AT_GRU, self).__init__()
         self.args = args
@@ -27,5 +28,4 @@ class AT_GRU(nn.Module):
         output = self.dense(output)
         if self.args.softmax:
             output = self.softmax(output)
-        return output1996
-    
+        return output
