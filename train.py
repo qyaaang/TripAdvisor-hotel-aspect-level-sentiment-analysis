@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+from adabelief_pytorch import AdaBelief
 import sys
 import time
 import numpy as np
@@ -126,12 +127,16 @@ class BaseExperiment:
             self.optimizer = optim.Adam(filter(lambda p: p.requires_grad, self.mdl.parameters()),
                                         lr=self.args.learning_rate,
                                         weight_decay=self.args.weight_decay)
+        elif self.args.optimizer == 'AdaBelief':
+            self.optimizer = AdaBelief(self.mdl.parameters(),
+                                       weight_decay=self.args.weight_decay)
         elif self.args.optimizer == 'RMS':
             self.optimizer = optim.RMSprop(filter(lambda p: p.requires_grad, self.mdl.parameters()),
                                            lr=self.args.learning_rate)
         elif self.args.optimizer == 'SGD':
             self.optimizer = optim.SGD(filter(lambda p: p.requires_grad, self.mdl.parameters()),
-                                       lr=self.args.learning_rate)
+                                       lr=self.args.learning_rate,
+                                       momentum=0.9)
         elif self.args.optimizer == 'Adagrad':
             self.optimizer = optim.Adagrad(filter(lambda p: p.requires_grad, self.mdl.parameters()),
                                            lr=self.args.learning_rate)
