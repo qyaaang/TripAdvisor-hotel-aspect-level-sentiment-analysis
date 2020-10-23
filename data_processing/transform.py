@@ -132,11 +132,12 @@ class Transform:
             content['opinions']['aspect_term'] = aspect_term_list
             self.data_processed.append(content)
 
-    def write_json(self, base_path):
+    def write_json(self, base_path, dataset):
         """
 
+        :param dataset:
         :param base_path:
         """
         data_processed = json.dumps(self.data_processed, indent=2)
-        with open('{}/data/data_processed/TripAdvisor_hotel_{}.json'.format(base_path, self.mode), 'w') as f:
+        with open('{}/data/data_processed/{}_{}.json'.format(base_path, dataset, self.mode), 'w') as f:
             f.write(data_processed)

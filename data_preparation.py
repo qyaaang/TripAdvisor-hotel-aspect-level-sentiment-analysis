@@ -18,18 +18,20 @@ from data_processing.transform import Transform
 base_path = sys.path[0]
 
 
-def data_preparation():
+def data_preparation(dataset):
     modes = ['train', 'test']
-    data_origin = pd.read_excel('{}/data/data_origin/TripAdvisor_hotel.xlsx'.format(base_path))
+    data_origin = pd.read_excel('{}/data/data_origin/{}.xlsx'.format(base_path, dataset))
     train_set, test_set = train_test_split(data_origin, test_size=0.2, random_state=1993)
-    train_set.to_csv('{}/data/data_origin/TripAdvisor_hotel_train.csv'.format(base_path), index=None)
-    test_set.to_csv('{}/data/data_origin/TripAdvisor_hotel_test.csv'.format(base_path), index=None)
+    train_set.to_csv('{}/data/data_origin/{}_train.csv'.format(base_path, dataset), index=None)
+    test_set.to_csv('{}/data/data_origin/{}_test.csv'.format(base_path, dataset), index=None)
     for mode in modes:
         transformer = Transform(mode)
-        transformer.get_data('{}/data/data_origin/TripAdvisor_hotel_{}.csv'.format(base_path, mode))
+        transformer.get_data('{}/data/data_origin/{}_{}.csv'.format(base_path, dataset, mode))
         transformer.write()
-        transformer.write_json(base_path)
+        transformer.write_json(base_path, dataset)
 
 
 if __name__ == '__main__':
-    data_preparation()
+    dataset_name = 'TripAdvisor_hotel'
+    # dataset_name = 'Sheraton_Grand_Macao'
+    data_preparation(dataset_name)

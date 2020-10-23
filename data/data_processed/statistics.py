@@ -18,9 +18,9 @@ import matplotlib.pyplot as plt
 
 class Sample:
 
-    def __init__(self, train):
+    def __init__(self, dataset, train):
         self.train = train
-        self.file_name = 'TripAdvisor_hotel_{}.json'.format(train)
+        self.file_name = '{}_{}.json'.format(dataset, train)
         with open(self.file_name) as f:
             self.data = json.load(f)
         self.num_pos, self.num_neu, self.num_neg = 0, 0, 0
@@ -45,6 +45,8 @@ class Sample:
                         self.num_neg += 1
             except:
                 continue
+        print('{} [Positive: {} Neutral: {} Negative: {}]\n'.
+              format(self.train, self.num_pos, self.num_neu, self.num_neg))
 
     def write_data(self):
         data = {'{} set'.format(self.train): {}}
@@ -54,12 +56,12 @@ class Sample:
         return data
 
 
-def sample_distribution():
+def sample_distribution(dataset):
     modes = ['train', 'test']
     polarities = ['positive', 'neutral', 'negative']
     data = {}
     for mode in modes:
-        sample = Sample(mode)
+        sample = Sample(dataset, mode)
         data.update(sample())
     data['dataset'] = {}
     for polarity in polarities:
@@ -67,8 +69,8 @@ def sample_distribution():
     return data
 
 
-def bar_distribution(is_int=True):
-    data = sample_distribution()
+def bar_distribution(dataset, is_int=True):
+    data = sample_distribution(dataset)
     polarities = list(data['dataset'].keys())
     nums = [data['dataset'][polarity] for polarity in polarities]
     fig, ax = plt.subplots()
@@ -88,13 +90,13 @@ def bar_distribution(is_int=True):
     plt.show()
 
 
-def pie_distribution():
+def pie_distribution(dataset):
 
     def size(pct, all_vals):
         absolute = int(pct / 100. * np.sum(all_vals))
         return "{:.1f}%\n({:d})".format(pct, absolute)
 
-    data = sample_distribution()
+    data = sample_distribution(dataset)
     polarities = list(data['dataset'].keys())
     nums = [data['dataset'][polarity] for polarity in polarities]
     fig, ax = plt.subplots(figsize=(10, 5), subplot_kw=dict(aspect="equal"))
@@ -113,5 +115,7 @@ def pie_distribution():
 
 if __name__ == '__main__':
     plt.rcParams['font.family'] = 'Arial'
+    dataset_name = 'TripAdvisor_hotel'
+    # dataset_name = 'Sheraton_Grand_Macao'
     # bar_distribution()
-    pie_distribution()
+    pie_distribution(dataset_name)
