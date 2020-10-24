@@ -115,7 +115,8 @@ def pie_distribution(dataset):
 
 if __name__ == '__main__':
     plt.rcParams['font.family'] = 'Arial'
-    dataset_name = 'TripAdvisor_hotel'
+    # dataset_name = 'TripAdvisor_hotel'
+    dataset_name = 'ABSA_dataset'
     # dataset_name = 'Sheraton_Grand_Macao'
     # bar_distribution()
     pie_distribution(dataset_name)
