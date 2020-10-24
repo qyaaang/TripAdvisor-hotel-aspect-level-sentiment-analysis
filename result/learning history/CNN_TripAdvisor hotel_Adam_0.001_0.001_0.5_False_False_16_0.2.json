@@ -1,0 +1,13 @@
+{
+  "Loss": [
+    1.0315232276916504
+  ],
+  "Training accuracy": [
+    0.522140221402214
+  ],
+  "Validation accuracy": [
+    0.5738916256157636
+  ],
+  "Best Validation accuracy": 0.5738916256157636,
+  "Test accuracy": 0.5591603053435115
+}
