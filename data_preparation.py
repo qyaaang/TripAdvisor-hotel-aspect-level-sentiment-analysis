@@ -34,7 +34,8 @@ def data_preparation(opts):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--dataset', default='TripAdvisor_hotel', type=str)
+    parser.add_argument('--dataset', default='TripAdvisor_hotel', type=str,
+                        help='TripAdvisor_hotel, ABSA_dataset, Sheraton_Grand_Macao, Ritz_Carlton_Macau')
     parser.add_argument('--test_size', default=0.2, type=float)
     args = parser.parse_args()
     data_preparation(args)
