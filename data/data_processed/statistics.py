@@ -14,6 +14,7 @@
 import json
 import numpy as np
 import matplotlib.pyplot as plt
+import argparse
 
 
 class Sample:
@@ -69,8 +70,8 @@ def sample_distribution(dataset):
     return data
 
 
-def bar_distribution(dataset, is_int=True):
-    data = sample_distribution(dataset)
+def bar_distribution(opt, is_int=True):
+    data = sample_distribution(opt.dataset)
     polarities = list(data['dataset'].keys())
     nums = [data['dataset'][polarity] for polarity in polarities]
     fig, ax = plt.subplots()
@@ -90,13 +91,13 @@ def bar_distribution(dataset, is_int=True):
     plt.show()
 
 
-def pie_distribution(dataset):
+def pie_distribution(opt):
 
     def size(pct, all_vals):
         absolute = int(pct / 100. * np.sum(all_vals))
         return "{:.1f}%\n({:d})".format(pct, absolute)
 
-    data = sample_distribution(dataset)
+    data = sample_distribution(opt.dataset)
     polarities = list(data['dataset'].keys())
     nums = [data['dataset'][polarity] for polarity in polarities]
     fig, ax = plt.subplots(figsize=(10, 5), subplot_kw=dict(aspect="equal"))
@@ -115,8 +116,9 @@ def pie_distribution(dataset):
 
 if __name__ == '__main__':
     plt.rcParams['font.family'] = 'Arial'
-    # dataset_name = 'TripAdvisor_hotel'
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset', default='TripAdvisor_hotel', type=str,
+                        help='TripAdvisor_hotel, ABSA_dataset, Sheraton_Grand_Macao, Ritz_Carlton_Macau')
+    arg = parser.parse_args()
     dataset_name = 'ABSA_dataset'
-    # dataset_name = 'Sheraton_Grand_Macao'
-    # bar_distribution()
-    pie_distribution(dataset_name)
+    pie_distribution(arg)

@@ -344,8 +344,11 @@ class BaseExperiment:
                 else:
                     targets = np.concatenate((targets, target))
         result = self.metric(targets=targets, outputs=output)
-        print('\033[1;32mTest accuracy:{:.2f}%, macro_f1:{:.5f}\033[0m'.
-              format(result['acc'] * 100, result['macro_f1']))
+        print('\033[1;32mTest accuracy:{:.2f}%\nrecall: {}\nprecision: {}\nmacro-F1:{:.2f}%\033[0m'.
+              format(result['acc'] * 100,
+                     result['recall'],
+                     result['precision'],
+                     result['macro_f1'] * 100))
         self.learning_history['Test accuracy'] = result['acc']
         # Plot confusion matrix
         class_names = ['negative', 'neutral', 'positive']
@@ -397,7 +400,7 @@ if __name__ == '__main__':
     # Hyper Parameters
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', default='TD_LSTM', type=str)
-    parser.add_argument('--dataset', default='TripAdvisor hotel', type=str)
+    parser.add_argument('--dataset', default='TripAdvisor_hotel', type=str)
     parser.add_argument('--pre_trained_model', default='ABSA', type=str)
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
