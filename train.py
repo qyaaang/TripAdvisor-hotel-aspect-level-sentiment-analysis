@@ -470,7 +470,7 @@ def main():
         'orthogonal_': torch.nn.init.orthogonal_,
         'kaiming_normal_': torch.nn.init.kaiming_normal_
     }
-    testset = {'1': {'frac_pos': 0.4, 'frac_neu': 0.3, 'frac_neg': 0.3},
+    testset = {'1': {'frac_pos': 0.35, 'frac_neu': 0.35, 'frac_neg': 0.3},
                '2': {'frac_pos': 0.6, 'frac_neu': 0.15, 'frac_neg': 0.25},
                '3': {'frac_pos': 0.15, 'frac_neu': 0.6, 'frac_neg': 0.25},
                '4': {'frac_pos': 0.25, 'frac_neu': 0.15, 'frac_neg': 0.6},
