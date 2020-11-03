@@ -147,8 +147,13 @@ class TripadvisorDataset(Dataset):
 class TripadvisorDatasetReader:
 
     def __init__(self, dataset='TripAdvisor_hotel', embed_dim=300, max_seq_len=-1,
-                 num_sample=3600, frac_pos=0.4, frac_neu=0.3, frac_neg=0.3):
+                 num_sample=3600, frac_pos=0.4, frac_neu=0.3, frac_neg=0.3, testset='1'):
         print("preparing {0} dataset...".format(dataset))
+        testsets = {'1': {'frac_pos': 0.4, 'frac_neu': 0.3, 'frac_neg': 0.3},
+                    '2': {'frac_pos': 0.6, 'frac_neu': 0.15, 'frac_neg': 0.25},
+                    '3': {'frac_pos': 0.15, 'frac_neu': 0.6, 'frac_neg': 0.25},
+                    '4': {'frac_pos': 0.25, 'frac_neu': 0.15, 'frac_neg': 0.6},
+                    }
         fname = {
             'ABSA': {
                 'train': '{}/data_processed/ABSA_dataset_train.json'.format(base_path),
@@ -158,7 +163,11 @@ class TripadvisorDatasetReader:
                 'train': '{}/data_processed/TripAdvisor_hotel_{}_{}_{}_{}_train.json'
                          .format(base_path, num_sample, frac_pos, frac_neu, frac_neg),
                 'test': '{}/data_processed/TripAdvisor_hotel_{}_{}_{}_{}_test.json'
-                         .format(base_path, num_sample, frac_pos, frac_neu, frac_neg)
+                         .format(base_path, num_sample,
+                                 testsets[testset]['frac_pos'],
+                                 testsets[testset]['frac_neu'],
+                                 testsets[testset]['frac_neg']
+                                 )
             }
         }
         text_train, aspect_text_train, max_seq_len_train, max_term_len_train = TripadvisorDatasetReader.__read_text__(

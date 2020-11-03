@@ -83,7 +83,9 @@ class BaseExperiment:
                                                        num_sample=args.num_sample,
                                                        frac_pos=args.frac_pos,
                                                        frac_neu=args.frac_neu,
-                                                       frac_neg=args.frac_neg)
+                                                       frac_neg=args.frac_neg,
+                                                       testset=args.testset
+                                                       )
         if self.args.dev > 0.0:
             random.shuffle(tripadvisor_dataset.train_data.data)
             dev_num = int(len(tripadvisor_dataset.train_data.data) * self.args.dev)
@@ -228,7 +230,7 @@ class BaseExperiment:
                                                             self.args.frac_neg,
                                                             self.args.optimizer,
                                                             self.args.learning_rate,
-                                                            self.args.weight_decay,
+                                                            self.args.num_epoch,
                                                             self.args.dropout,
                                                             self.args.batch_normalizations,
                                                             self.args.softmax)
@@ -319,20 +321,8 @@ class BaseExperiment:
         self.learning_history['Best Validation accuracy'] = best_acc
 
     def test(self, frac_pos, frac_neu, frac_neg):
-        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.model'. \
-            format(self.args.model_name,
-                   self.args.dataset,
-                   self.args.num_sample,
-                   str(frac_pos),
-                   str(frac_neu),
-                   str(frac_neg),
-                   self.args.optimizer,
-                   self.args.learning_rate,
-                   self.args.weight_decay,
-                   self.args.dropout,
-                   self.args.batch_normalizations,
-                   self.args.softmax)
-        self.mdl.load_state_dict(self.load_model(path))
+        path = save_path + 'models/{}.model'.format(self.file_name())
+        self.mdl.load_state_dict(self.load_model(path))  # Load model
         self.mdl.eval()
         outputs, targets = None, None
         with torch.no_grad():
@@ -358,6 +348,7 @@ class BaseExperiment:
         class_names = ['negative', 'neutral', 'positive']
         cnf_matrix = confusion_matrix(targets, outputs)
         plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix', normalize=False)
+        # plt.show()
         plt.savefig('./result/figures/'
                     '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.png'
                     .format(self.args.model_name,
@@ -368,7 +359,7 @@ class BaseExperiment:
                             str(frac_neg),
                             self.args.optimizer,
                             self.args.learning_rate,
-                            self.args.weight_decay,
+                            self.args.num_epoch,
                             self.args.dropout,
                             self.args.batch_normalizations,
                             self.args.softmax))

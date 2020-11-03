@@ -38,7 +38,7 @@ class Visualization:
                                                             self.args.frac_neg,
                                                             self.args.optimizer,
                                                             self.args.learning_rate,
-                                                            self.args.weight_decay,
+                                                            self.args.num_epoch,
                                                             self.args.dropout,
                                                             self.args.batch_normalizations,
                                                             self.args.softmax)
@@ -74,7 +74,7 @@ def main():
     parser.add_argument('--frac_neg', default=0.3, type=float)
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--learning_rate', default=0.001, type=float)
-    parser.add_argument('--weight_decay', default=0.001, type=float)
+    parser.add_argument('--num_epoch', default=100, type=int)
     parser.add_argument('--batch_normalizations', action="store_true", default=False)
     parser.add_argument('--softmax', action="store_true", default=False)
     parser.add_argument('--dropout', default=0.50, type=float)
