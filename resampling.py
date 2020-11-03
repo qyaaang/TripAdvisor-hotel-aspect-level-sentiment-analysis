@@ -22,11 +22,11 @@ class Resampling:
 
     def __init__(self, args):
         self.args = args
-        self.data_pos = pd.read_excel('./data/data_origin/Tripadvisor_split_sample/'
+        self.data_pos = pd.read_excel('./data/data_origin/TripAdvisor_split_sample/'
                                       'TripAdvisor_hotel_positive.xlsx', header=None)
-        self.data_neu = pd.read_excel('./data/data_origin/Tripadvisor_split_sample/'
+        self.data_neu = pd.read_excel('./data/data_origin/TripAdvisor_split_sample/'
                                       'TripAdvisor_hotel_neutral.xlsx', header=None)
-        self.data_neg = pd.read_excel('./data/data_origin/Tripadvisor_split_sample/'
+        self.data_neg = pd.read_excel('./data/data_origin/TripAdvisor_split_sample/'
                                       'TripAdvisor_hotel_negative.xlsx', header=None)
         self.polarity_symbol = {'+': 'positive', '-': 'negative', '0': 'neutral', 'c': 'conflict'}
 
