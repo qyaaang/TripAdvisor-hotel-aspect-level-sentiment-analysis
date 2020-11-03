@@ -21,21 +21,36 @@ base_path = sys.path[0]
 
 def data_preparation(opts):
     modes = ['train', 'test']
-    data_origin = pd.read_excel('{}/data/data_origin/{}.xlsx'.format(base_path, opts.dataset))
+    data_origin = pd.read_excel('{}/data/data_origin/{}_{}_{}_{}_{}.xlsx'
+                                .format(base_path, opts.dataset,
+                                        opts.num_sample, opts.frac_pos, opts.frac_neu, opts.frac_neg))
     train_set, test_set = train_test_split(data_origin, test_size=opts.test_size, random_state=1993)
-    train_set.to_csv('{}/data/data_origin/{}_train.csv'.format(base_path, opts.dataset), index=None)
-    test_set.to_csv('{}/data/data_origin/{}_test.csv'.format(base_path, opts.dataset), index=None)
+    train_set.to_csv('{}/data/data_origin/{}_{}_{}_{}_{}_train.csv'
+                     .format(base_path, opts.dataset,
+                             opts.num_sample, opts.frac_pos, opts.frac_neu, opts.frac_neg),
+                     index=None)
+    test_set.to_csv('{}/data/data_origin/{}_{}_{}_{}_{}_test.csv'
+                    .format(base_path, opts.dataset,
+                            opts.num_sample, opts.frac_pos, opts.frac_neu, opts.frac_neg),
+                    index=None)
     for mode in modes:
         transformer = Transform(mode)
-        transformer.get_data('{}/data/data_origin/{}_{}.csv'.format(base_path, opts.dataset, mode))
+        transformer.get_data('{}/data/data_origin/{}_{}_{}_{}_{}_{}.csv'
+                             .format(base_path, opts.dataset,
+                                     opts.num_sample, opts.frac_pos, opts.frac_neu, opts.frac_neg, mode))
         transformer.write()
-        transformer.write_json(base_path, opts.dataset)
+        transformer.write_json(base_path, opts.dataset,
+                               opts.num_sample, opts.frac_pos, opts.frac_neu, opts.frac_neg)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', default='TripAdvisor_hotel', type=str,
-                        help='TripAdvisor_hotel, ABSA_dataset, Sheraton_Grand_Macao, Ritz_Carlton_Macau')
+                        help='TripAdvisor_hotel, ABSA_dataset')
     parser.add_argument('--test_size', default=0.2, type=float)
+    parser.add_argument('--num_sample', default=3600, type=int)
+    parser.add_argument('--frac_pos', default=0.4, type=float)
+    parser.add_argument('--frac_neu', default=0.3, type=float)
+    parser.add_argument('--frac_neg', default=0.3, type=float)
     args = parser.parse_args()
     data_preparation(args)

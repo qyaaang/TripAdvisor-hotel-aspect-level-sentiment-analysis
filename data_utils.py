@@ -7,7 +7,7 @@ import json
 from data_processing.clean import process_text
 import copy
 
-base_path = sys.path[0] + "/data/"
+base_path = sys.path[0] + '/data'
 model_path = '/Users/qunyang/Dropbox (Personal)/Vivian/Pre-trained word vectors'  # Pre-trained word vectors
 # print(base_path)
 sentiment_map = {
@@ -27,8 +27,10 @@ def load_word_vec(path, word2idx=None):
     return word_vec
 
 
-def build_embedding_matrix(word2idx, embed_dim, type):
-    embedding_matrix_file_name = base_path + 'store/{0}_{1}_embedding_matrix.dat'.format(str(embed_dim), type)
+def build_embedding_matrix(word2idx, embed_dim, dataset, num_sample, frac_pos, frac_neu, frac_neg):
+    embedding_matrix_file_name = '{}/store/{}_{}_{}_{}_{}_{}_embedding_matrix.dat'\
+                                 .format(base_path, str(embed_dim), dataset,
+                                         num_sample, frac_pos, frac_neu, frac_neg)
     if os.path.exists(embedding_matrix_file_name):
         print('loading embedding_matrix:', embedding_matrix_file_name)
         embedding_matrix = pickle.load(open(embedding_matrix_file_name, 'rb'))
@@ -52,9 +54,10 @@ def build_embedding_matrix(word2idx, embed_dim, type):
     return embedding_matrix
 
 
-def build_aspect_embedding_matrix(word2idx, embed_dim, type):
-    aspect_embedding_matrix_file_name = base_path + 'store/{0}_{1}_aspect_embedding_matrix.dat'.format(str(embed_dim),
-                                                                                                       type)
+def build_aspect_embedding_matrix(word2idx, embed_dim, dataset, num_sample, frac_pos, frac_neu, frac_neg):
+    aspect_embedding_matrix_file_name = '{}/store/{}_{}_{}_{}_{}_{}_aspect_embedding_matrix.dat'\
+                                        .format(base_path, str(embed_dim), dataset,
+                                                num_sample, frac_pos, frac_neu, frac_neg)
     if os.path.exists(aspect_embedding_matrix_file_name):
         print('loading embedding_matrix:', aspect_embedding_matrix_file_name)
         aspect_embedding_matrix = pickle.load(open(aspect_embedding_matrix_file_name, 'rb'))
@@ -143,16 +146,19 @@ class TripadvisorDataset(Dataset):
 
 class TripadvisorDatasetReader:
 
-    def __init__(self, dataset='TripAdvisor_hotel', embed_dim=300, max_seq_len=-1):
+    def __init__(self, dataset='TripAdvisor_hotel', embed_dim=300, max_seq_len=-1,
+                 num_sample=3600, frac_pos=0.4, frac_neu=0.3, frac_neg=0.3):
         print("preparing {0} dataset...".format(dataset))
         fname = {
             'ABSA': {
-                'train': base_path + 'data_processed/ABSA_dataset_train.json',
-                'test': base_path + 'data_processed/ABSA_dataset_test.json'
+                'train': '{}/data_processed/ABSA_dataset_train.json'.format(base_path),
+                'test': '{}/data_processed/ABSA_dataset_test.json'.format(base_path)
             },
             'TripAdvisor_hotel': {
-                'train': base_path + 'data_processed/TripAdvisor_hotel_train.json',
-                'test': base_path + 'data_processed/TripAdvisor_hotel_test.json'
+                'train': '{}/data_processed/TripAdvisor_hotel_{}_{}_{}_{}_train.json'
+                         .format(base_path, num_sample, frac_pos, frac_neu, frac_neg),
+                'test': '{}/data_processed/TripAdvisor_hotel_{}_{}_{}_{}_test.json'
+                         .format(base_path, num_sample, frac_pos, frac_neu, frac_neg)
             }
         }
         text_train, aspect_text_train, max_seq_len_train, max_term_len_train = TripadvisorDatasetReader.__read_text__(
@@ -168,7 +174,8 @@ class TripadvisorDatasetReader:
         # tokenizer_aspect = Tokenizer(max_seq_len=max_seq_len, max_aspect_len=max_term_len_train)
         # tokenizer_aspect.fit_on_text(aspect_text.lower())
         # print tokenizer_aspect.word2idx
-        self.embedding_matrix = build_embedding_matrix(tokenizer_text.word2idx, embed_dim, dataset)
+        self.embedding_matrix = build_embedding_matrix(tokenizer_text.word2idx, embed_dim, dataset,
+                                                       num_sample, frac_pos, frac_neu, frac_neg)
         self.aspect_embedding_matrix = copy.deepcopy(self.embedding_matrix)
         # #build_aspect_embedding_matrix(tokenizer_text.word2idx, embed_dim, dataset)
         self.train_data = TripadvisorDataset(
@@ -280,5 +287,6 @@ class TripadvisorDatasetReader:
 
 
 if __name__ == '__main__':
-    TripadvisorDatasetReader(dataset='hotel', embed_dim=300, max_seq_len=80)
+    TripadvisorDatasetReader(dataset='TripAdvisor_hotel', embed_dim=300, max_seq_len=80,
+                             num_sample=3600, frac_pos=0.4, frac_neu=0.3, frac_neg=0.3)
 

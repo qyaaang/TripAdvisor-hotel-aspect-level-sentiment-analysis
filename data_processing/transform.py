@@ -132,12 +132,17 @@ class Transform:
             content['opinions']['aspect_term'] = aspect_term_list
             self.data_processed.append(content)
 
-    def write_json(self, base_path, dataset):
+    def write_json(self, base_path, dataset, num_sample, frac_pos, frac_neu, frac_neg):
         """
 
-        :param dataset:
         :param base_path:
+        :param dataset:
+        :param num_sample:
+        :param frac_pos:
+        :param frac_neu:
+        :param frac_neg:
         """
         data_processed = json.dumps(self.data_processed, indent=2)
-        with open('{}/data/data_processed/{}_{}.json'.format(base_path, dataset, self.mode), 'w') as f:
+        with open('{}/data/data_processed/{}_{}_{}_{}_{}_{}.json'
+                  .format(base_path, dataset, num_sample, frac_pos, frac_neu, frac_neg, self.mode), 'w') as f:
             f.write(data_processed)

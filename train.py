@@ -11,6 +11,7 @@ from data_utils import TripadvisorDatasetReader
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, f1_score, recall_score, precision_score
 from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import train_test_split
 from plot_utils import plot_confusion_matrix
 import matplotlib.pyplot as plt
 import argparse
@@ -41,7 +42,7 @@ from models.CABASC import CABASC
 from models.GCAE import GCAE
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-save_path = sys.path[0] + "/result/"
+save_path = sys.path[0] + '/result/'
 base_path = sys.path[0] + '/data/store/'
 
 
@@ -78,12 +79,18 @@ class BaseExperiment:
 
         tripadvisor_dataset = TripadvisorDatasetReader(dataset=args.dataset,
                                                        embed_dim=args.embed_dim,
-                                                       max_seq_len=args.max_seq_len)
+                                                       max_seq_len=args.max_seq_len,
+                                                       num_sample=args.num_sample,
+                                                       frac_pos=args.frac_pos,
+                                                       frac_neu=args.frac_neu,
+                                                       frac_neg=args.frac_neg)
         if self.args.dev > 0.0:
             random.shuffle(tripadvisor_dataset.train_data.data)
             dev_num = int(len(tripadvisor_dataset.train_data.data) * self.args.dev)
             tripadvisor_dataset.dev_data.data = tripadvisor_dataset.train_data.data[:dev_num]
             tripadvisor_dataset.train_data.data = tripadvisor_dataset.train_data.data[dev_num:]
+            # tripadvisor_dataset.train_data.data, tripadvisor_dataset.dev_data.data = \
+            #     train_test_split(tripadvisor_dataset.train_data.data, test_size=self.args.dev, random_state=1993)
 
         # print(len(absa_dataset.train_data.data), len(absa_dataset.dev_data.data))
 
@@ -129,6 +136,7 @@ class BaseExperiment:
                                         weight_decay=self.args.weight_decay)
         elif self.args.optimizer == 'AdaBelief':
             self.optimizer = AdaBelief(self.mdl.parameters(),
+                                       lr=self.args.learning_rate,
                                        weight_decay=self.args.weight_decay)
         elif self.args.optimizer == 'RMS':
             self.optimizer = optim.RMSprop(filter(lambda p: p.requires_grad, self.mdl.parameters()),
@@ -211,6 +219,20 @@ class BaseExperiment:
             f_to.close()
         return result
 
+    def file_name(self):
+        return '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}'.format(self.args.model_name,
+                                                            self.args.dataset,
+                                                            self.args.num_sample,
+                                                            self.args.frac_pos,
+                                                            self.args.frac_neu,
+                                                            self.args.frac_neg,
+                                                            self.args.optimizer,
+                                                            self.args.learning_rate,
+                                                            self.args.weight_decay,
+                                                            self.args.dropout,
+                                                            self.args.batch_normalizations,
+                                                            self.args.softmax)
+
     def train(self):
         best_acc = 0.0
         best_result = None
@@ -257,17 +279,7 @@ class BaseExperiment:
                     result = self.metric(targets=targets, outputs=outputs)
                     if result['acc'] > best_acc:
                         best_acc = result['acc']
-                        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.model'. \
-                            format(self.args.model_name,
-                                   self.args.dataset,
-                                   self.args.optimizer,
-                                   self.args.learning_rate,
-                                   self.args.weight_decay,
-                                   self.args.dropout,
-                                   self.args.batch_normalizations,
-                                   self.args.softmax,
-                                   self.args.batch_size,
-                                   self.args.dev)
+                        path = save_path + 'models/{}.model'.format(self.file_name())
                         torch.save(self.mdl.state_dict(), path)
                         best_result = result
             else:
@@ -286,17 +298,7 @@ class BaseExperiment:
                     result = self.metric(targets=targets, outputs=outputs)
                     if result['acc'] > best_acc:
                         best_acc = result['acc']
-                        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.model'. \
-                            format(self.args.model_name,
-                                   self.args.dataset,
-                                   self.args.optimizer,
-                                   self.args.learning_rate,
-                                   self.args.weight_decay,
-                                   self.args.dropout,
-                                   self.args.batch_normalizations,
-                                   self.args.softmax,
-                                   self.args.batch_size,
-                                   self.args.dev)
+                        path = save_path + 'models/{}.model'.format(self.file_name())
                         torch.save(self.mdl.state_dict(), path)
                         best_result = result
             print('\033[1;31m[Epoch {:>4}]\033[0m  '
@@ -316,18 +318,20 @@ class BaseExperiment:
         self.learning_history['Validation accuracy'] = np.array(accuracy_validation).tolist()
         self.learning_history['Best Validation accuracy'] = best_acc
 
-    def test(self):
-        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.model'. \
+    def test(self, frac_pos, frac_neu, frac_neg):
+        path = save_path + 'models/{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.model'. \
             format(self.args.model_name,
                    self.args.dataset,
+                   self.args.num_sample,
+                   str(frac_pos),
+                   str(frac_neu),
+                   str(frac_neg),
                    self.args.optimizer,
                    self.args.learning_rate,
                    self.args.weight_decay,
                    self.args.dropout,
                    self.args.batch_normalizations,
-                   self.args.softmax,
-                   self.args.batch_size,
-                   self.args.dev)
+                   self.args.softmax)
         self.mdl.load_state_dict(self.load_model(path))
         self.mdl.eval()
         outputs, targets = None, None
@@ -355,32 +359,23 @@ class BaseExperiment:
         cnf_matrix = confusion_matrix(targets, outputs)
         plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix', normalize=False)
         plt.savefig('./result/figures/'
-                    '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.png'
+                    '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.png'
                     .format(self.args.model_name,
                             self.args.dataset,
+                            self.args.num_sample,
+                            str(frac_pos),
+                            str(frac_neu),
+                            str(frac_neg),
                             self.args.optimizer,
                             self.args.learning_rate,
                             self.args.weight_decay,
                             self.args.dropout,
                             self.args.batch_normalizations,
-                            self.args.softmax,
-                            self.args.batch_size,
-                            self.args.dev))
+                            self.args.softmax))
 
-    def save_learning_history(self):
+    def write_learning_history(self):
         data = json.dumps(self.learning_history, indent=2)
-        with open('./result/learning history/'
-                  '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.json'
-                  .format(self.args.model_name,
-                          self.args.dataset,
-                          self.args.optimizer,
-                          self.args.learning_rate,
-                          self.args.weight_decay,
-                          self.args.dropout,
-                          self.args.batch_normalizations,
-                          self.args.softmax,
-                          self.args.batch_size,
-                          self.args.dev), 'w') as f:
+        with open('./result/learning history/{}.json'.format(self.file_name()), 'w') as f:
             f.write(data)
 
     def transfer_learning(self):
@@ -396,11 +391,16 @@ class BaseExperiment:
         self.mdl.load_state_dict(self.load_model(model_path))
 
 
-if __name__ == '__main__':
+def main():
     # Hyper Parameters
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', default='TD_LSTM', type=str)
     parser.add_argument('--dataset', default='TripAdvisor_hotel', type=str)
+    parser.add_argument('--num_sample', default=3600, type=int)
+    parser.add_argument('--frac_pos', default=0.4, type=float)
+    parser.add_argument('--frac_neu', default=0.3, type=float)
+    parser.add_argument('--frac_neg', default=0.3, type=float)
+    parser.add_argument('--testset', default='1', type=str)
     parser.add_argument('--pre_trained_model', default='ABSA', type=str)
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
@@ -421,7 +421,6 @@ if __name__ == '__main__':
     parser.add_argument('--softmax', action="store_true", default=False)
     parser.add_argument('--dev', default=0.20, type=float)
     parser.add_argument('--dropout', default=0.50, type=float)
-
     args = parser.parse_args()
     model_classes = {
         'ContextAvg': ContextAvg,
@@ -480,6 +479,11 @@ if __name__ == '__main__':
         'orthogonal_': torch.nn.init.orthogonal_,
         'kaiming_normal_': torch.nn.init.kaiming_normal_
     }
+    testset = {'1': {'frac_pos': 0.4, 'frac_neu': 0.3, 'frac_neg': 0.3},
+               '2': {'frac_pos': 0.6, 'frac_neu': 0.15, 'frac_neg': 0.25},
+               '3': {'frac_pos': 0.15, 'frac_neu': 0.6, 'frac_neg': 0.25},
+               '4': {'frac_pos': 0.25, 'frac_neu': 0.15, 'frac_neg': 0.6},
+               }
     args.model_class = model_classes[args.model_name]
     args.inputs_cols = input_colses[args.model_name]
     args.initializer = initializers[args.initializer]
@@ -487,5 +491,12 @@ if __name__ == '__main__':
     # args.batch_normalizations = False
     exp = BaseExperiment(args)
     exp.train()
-    exp.test()
-    exp.save_learning_history()
+    exp.test(frac_pos=testset[args.testset]['frac_pos'],
+             frac_neu=testset[args.testset]['frac_neu'],
+             frac_neg=testset[args.testset]['frac_neg']
+             )
+    exp.write_learning_history()
+
+
+if __name__ == '__main__':
+    main()

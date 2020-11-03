@@ -32,8 +32,8 @@ class Resampling:
 
     def __call__(self, *args, **kwargs):
         self.create_dataset()
-        data = pd.read_excel('./data/data_origin/TripAdvisor_hotel_{}_{}_{}.xlsx'.
-                             format(self.args.frac_pos, self.args.frac_neu, self.args.frac_neg),
+        data = pd.read_excel('./data/data_origin/TripAdvisor_hotel_{}_{}_{}_{}.xlsx'.
+                             format(self.args.num_sample, self.args.frac_pos, self.args.frac_neu, self.args.frac_neg),
                              header=None)
         polarities = self.get_polarities(data)
         nums = self.sum_polarity(polarities)
@@ -46,9 +46,9 @@ class Resampling:
         data_pos = shuffle(self.data_pos).reset_index(drop=True)  # Shuffle dataset
         data_neu = shuffle(self.data_neu).reset_index(drop=True)
         data_neg = shuffle(self.data_neg).reset_index(drop=True)
-        num_pos = int(self.args.num * self.args.frac_pos)
-        num_neu = int(self.args.num * self.args.frac_neu)
-        num_neg = int(self.args.num * self.args.frac_neg)
+        num_pos = int(self.args.num_sample * self.args.frac_pos)
+        num_neu = int(self.args.num_sample * self.args.frac_neu)
+        num_neg = int(self.args.num_sample * self.args.frac_neg)
         row1 = 0
         for i in range(len(data_pos)):
             data1 = data_pos[0:row1]
@@ -81,8 +81,8 @@ class Resampling:
         """
         data_pos, data_neu, data_neg = self.resampling()
         data = pd.concat([data_pos, data_neu, data_neg], axis=0)
-        data.to_excel('./data/data_origin/TripAdvisor_hotel_{}_{}_{}.xlsx'.
-                      format(self.args.frac_pos, self.args.frac_neu, self.args.frac_neg),
+        data.to_excel('./data/data_origin/TripAdvisor_hotel_{}_{}_{}_{}.xlsx'.
+                      format(self.args.num_sample, self.args.frac_pos, self.args.frac_neu, self.args.frac_neg),
                       index=None, header=None)
 
     def get_polarity(self, aspect_term):
@@ -144,7 +144,7 @@ class Resampling:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--num', default=3600, type=int)
+    parser.add_argument('--num_sample', default=3600, type=int)
     parser.add_argument('--frac_pos', default=0.4, type=float)
     parser.add_argument('--frac_neu', default=0.3, type=float)
     parser.add_argument('--frac_neg', default=0.3, type=float)
