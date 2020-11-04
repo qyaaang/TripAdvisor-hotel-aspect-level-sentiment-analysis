@@ -8,7 +8,7 @@ from data_processing.clean import process_text
 import copy
 
 base_path = sys.path[0] + '/data'
-model_path = '/Users/qunyang/Dropbox (Personal)/Vivian/Pre-trained word vectors'  # Pre-trained word vectors
+model_path = '../Pre-trained word vectors'  # Pre-trained word vectors
 # print(base_path)
 sentiment_map = {
     'positive': 2,
