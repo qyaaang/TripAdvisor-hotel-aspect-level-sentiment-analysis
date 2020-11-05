@@ -11,7 +11,6 @@ from data_utils import TripadvisorDatasetReader
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, f1_score, recall_score, precision_score
 from sklearn.metrics import confusion_matrix
-from sklearn.model_selection import train_test_split
 from plot_utils import plot_confusion_matrix
 import matplotlib.pyplot as plt
 import argparse
@@ -235,10 +234,42 @@ class BaseExperiment:
                                                             self.args.batch_normalizations,
                                                             self.args.softmax)
 
+    def validation(self):
+        self.mdl.eval()
+        val_data_loader = self.dev_data_loader if self.args.dev > 0.0 else self.test_data_loader
+        outputs, targets = None, None
+        with torch.no_grad():
+            for v_batch, v_sample_batched in enumerate(val_data_loader):
+                output, target = self.evaluation(v_sample_batched)
+                outputs = output if outputs is None else np.concatenate((outputs, output))
+                targets = target if targets is None else np.concatenate((targets, target))
+            result = self.metric(targets=targets, outputs=outputs)
+        return result
+
+    def validation_early_stopping(self):
+        """
+        Early stopping to prevent overfitting
+        """
+        self.mdl.eval()
+        val_data_loader = self.dev_data_loader if self.args.dev > 0.0 else self.test_data_loader
+        outputs, targets = None, None
+        losses = []
+        for v_batch, v_sample_batched in enumerate(val_data_loader):
+            output, target = self.evaluation(v_sample_batched)
+            loss = self.train_batch(v_sample_batched)
+            losses.append(loss)
+            outputs = output if outputs is None else np.concatenate((outputs, output))
+            targets = target if targets is None else np.concatenate((targets, target))
+        result = self.metric(targets=targets, outputs=outputs)
+        avg_loss = np.mean(losses)
+        return result, avg_loss
+
     def train(self):
         best_acc = 0.0
+        i, j = 0, 0
+        p = 5
+        best_loss = 10000000
         best_result = None
-        global_step = 0
         self.select_optimizer()
         losses_train = []
         accuracy_train, accuracy_validation = [], []
@@ -248,77 +279,60 @@ class BaseExperiment:
             t0 = time.time()
             outputs_train, targets_train = None, None
             for i_batch, sample_batched in enumerate(self.train_data_loader):
-                global_step += 1
                 loss = self.train_batch(sample_batched)
                 losses.append(loss)
                 output_train, target_train = self.evaluation(sample_batched)
-                if outputs_train is None:
-                    outputs_train = output_train
-                else:
-                    outputs_train = np.concatenate((outputs_train, output_train))
-
-                if targets_train is None:
-                    targets_train = target_train
-                else:
-                    targets_train = np.concatenate((targets_train, target_train))
+                outputs_train = output_train if outputs_train is None else np.concatenate((outputs_train, output_train))
+                targets_train = target_train if targets_train is None else np.concatenate((targets_train, target_train))
             results_train = self.metric(targets=targets_train, outputs=outputs_train)
             t1 = time.time()
-            self.mdl.eval()
-            if self.args.dev > 0.0:
-                outputs, targets = None, None
-                with torch.no_grad():
-                    for d_batch, d_sample_batched in enumerate(self.dev_data_loader):
-                        output, target = self.evaluation(d_sample_batched)
-                        if outputs is None:
-                            outputs = output
-                        else:
-                            outputs = np.concatenate((outputs, output))
-
-                        if targets is None:
-                            targets = target
-                        else:
-                            targets = np.concatenate((targets, target))
-                    result = self.metric(targets=targets, outputs=outputs)
-                    if result['acc'] > best_acc:
-                        best_acc = result['acc']
-                        path = save_path + 'models/{}.model'.format(self.file_name())
-                        torch.save(self.mdl.state_dict(), path)
-                        best_result = result
-            else:
-                outputs, targets = None, None
-                with torch.no_grad():
-                    for t_batch, t_sample_batched in enumerate(self.test_data_loader):
-                        output, target = self.evaluation(t_sample_batched)
-                        if outputs is None:
-                            outputs = output
-                        else:
-                            outputs = np.concatenate((outputs, output))
-                        if targets is None:
-                            targets = target
-                        else:
-                            targets = np.concatenate((targets, target))
-                    result = self.metric(targets=targets, outputs=outputs)
-                    if result['acc'] > best_acc:
-                        best_acc = result['acc']
-                        path = save_path + 'models/{}.model'.format(self.file_name())
-                        torch.save(self.mdl.state_dict(), path)
-                        best_result = result
-            print('\033[1;31m[Epoch {:>4}]\033[0m  '
-                  '\033[1;31mTrain loss={:.5f}\033[0m  '
-                  '\033[1;32mTrain accuracy={:.2f}%\033[0m  '
-                  '\033[1;33mValidation accuracy={:.2f}%\033[0m  '
-                  'Time cost={:.2f}s'.format(epoch + 1,
-                                             np.mean(losses),
-                                             results_train['acc'] * 100,
-                                             result['acc'] * 100,
-                                             t1 - t0))
+            # Validation
+            if not self.args.early_stopping:
+                result = self.validation()
+                if result['acc'] > best_acc:
+                    best_acc = result['acc']
+                    path = save_path + 'models/{}.model'.format(self.file_name())
+                    torch.save(self.mdl.state_dict(), path)
+                    best_result = result
+                print('\033[1;31m[Epoch {:>4}]\033[0m  '
+                      '\033[1;31mTraining loss={:.5f}\033[0m  '
+                      '\033[1;32mTraining accuracy={:.2f}%\033[0m  '
+                      '\033[1;33mValidation accuracy={:.2f}%\033[0m  '
+                      'Time cost={:.2f}s'.format(epoch + 1,
+                                                 np.mean(losses),
+                                                 results_train['acc'] * 100,
+                                                 result['acc'] * 100,
+                                                 t1 - t0))
+            else:  # Early stopping
+                result, val_loss = self.validation_early_stopping()
+                if val_loss < best_loss:
+                    j = 0
+                    path = save_path + 'models/{}.model'.format(self.file_name())
+                    torch.save(self.mdl.state_dict(), path)
+                    best_loss = val_loss
+                    best_result = result
+                else:
+                    j += 1
+                print('\033[1;31m[Epoch {:>4}]\033[0m  '
+                      '\033[1;31mTraining loss={:.5f}\033[0m  '
+                      '\033[1;32mTraining accuracy={:.2f}%\033[0m  '
+                      '\033[1;31mValidation loss={:.5f}\033[0m  '
+                      '\033[1;33mValidation accuracy={:.2f}%\033[0m  '
+                      'Time cost={:.2f}s'.format(epoch + 1,
+                                                 np.mean(losses),
+                                                 results_train['acc'] * 100,
+                                                 val_loss,
+                                                 result['acc'] * 100,
+                                                 t1 - t0))
+                if j >= p:
+                    break
             losses_train.append(np.mean(losses))
             accuracy_train.append(results_train['acc'])
             accuracy_validation.append(result['acc'])
         self.learning_history['Loss'] = np.array(losses_train).tolist()
         self.learning_history['Training accuracy'] = np.array(accuracy_train).tolist()
         self.learning_history['Validation accuracy'] = np.array(accuracy_validation).tolist()
-        self.learning_history['Best Validation accuracy'] = best_acc
+        self.learning_history['Best Validation accuracy'] = best_result['acc']
 
     def test(self, frac_pos, frac_neu, frac_neg):
         path = save_path + 'models/{}.model'.format(self.file_name())
@@ -328,16 +342,9 @@ class BaseExperiment:
         with torch.no_grad():
             for t_batch, t_sample_batched in enumerate(self.test_data_loader):
                 output, target = self.evaluation(t_sample_batched)
-                if outputs is None:
-                    outputs = output
-                else:
-                    outputs = np.concatenate((outputs, output))
-
-                if targets is None:
-                    targets = target
-                else:
-                    targets = np.concatenate((targets, target))
-        result = self.metric(targets=targets, outputs=output)
+                outputs = output if outputs is None else np.concatenate((outputs, output))
+                targets = target if targets is None else np.concatenate((targets, target))
+        result = self.metric(targets=targets, outputs=outputs)
         print('\033[1;32mTest accuracy:{:.2f}%\nrecall: {}\nprecision: {}\nmacro-F1:{:.2f}%\033[0m'.
               format(result['acc'] * 100,
                      result['recall'],
@@ -397,6 +404,7 @@ def main():
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
     parser.add_argument('--learning_rate', default=0.001, type=float)
     parser.add_argument('--weight_decay', default=0.001, type=float)
+    parser.add_argument('--early_stopping', action='store_true', default=False)
     parser.add_argument('--num_epoch', default=100, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
     parser.add_argument('--gpu', default=0, type=int)
@@ -408,8 +416,8 @@ def main():
     parser.add_argument('--kernel_sizes', default=[3, 4, 5], nargs='+', type=int)
     parser.add_argument('--hops', default=3, type=int)
     parser.add_argument('--seed', default=111, type=int)
-    parser.add_argument('--batch_normalizations', action="store_true", default=False)
-    parser.add_argument('--softmax', action="store_true", default=False)
+    parser.add_argument('--batch_normalizations', action='store_true', default=False)
+    parser.add_argument('--softmax', action='store_true', default=False)
     parser.add_argument('--dev', default=0.20, type=float)
     parser.add_argument('--dropout', default=0.50, type=float)
     args = parser.parse_args()
