@@ -1,2 +1,5 @@
-*.model
 /data/data_origin/tmp/
+/result/models/tmp/
+/result/figures/tmp/
+/result/learning history/tmp/
+
