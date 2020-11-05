@@ -1,5 +1,4 @@
 /data/data_origin/tmp/
-/results/models/tmp
-/results/figures/tmp/
-/results/learning history/tmp/
-
+/result/models/tmp/
+/result/learning history/tmp/
+/result/figures/tmp/
