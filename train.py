@@ -351,10 +351,13 @@ class BaseExperiment:
                      result['precision'],
                      result['macro_f1'] * 100))
         self.learning_history['Test accuracy'] = result['acc']
+        self.learning_history['Macro_precision'] = result['macro_precision']
+        self.learning_history['Macro_recall'] = result['macro_recall']
+        self.learning_history['Macro_F1'] = result['macro_f1']
         # Plot confusion matrix
-        class_names = ['negative', 'neutral', 'positive']
+        class_names = ['Negative', 'Neutral', 'Positive']
         cnf_matrix = confusion_matrix(targets, outputs)
-        plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix', normalize=False)
+        plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix', normalize=True)
         # plt.show()
         plt.savefig('./result/figures/'
                     '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.png'
