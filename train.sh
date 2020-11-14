@@ -2,7 +2,7 @@ dataset="TripAdvisor_hotel"
 model_name="ATAE_BiLSTM"
 num_sample=4000
 models=("1" "2" "3" "4")
-num_epoch=1
+num_epoch=1000
 optimizers=("SGD" "Adam" "AdaBelief")
 learning_rate=0.001
 for model in "${models[@]}"; do
