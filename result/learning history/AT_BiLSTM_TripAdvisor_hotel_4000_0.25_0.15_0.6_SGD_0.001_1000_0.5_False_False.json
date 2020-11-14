@@ -3006,5 +3006,8 @@
     0.8009554140127388
   ],
   "Best Validation accuracy": 0.8264331210191083,
-  "Test accuracy": 0.8010269576379975
+  "Test accuracy": 0.8010269576379975,
+  "Macro_precision": 0.727391816567319,
+  "Macro_recall": 0.6715228329574675,
+  "Macro_F1": 0.6896567024245753
 }
