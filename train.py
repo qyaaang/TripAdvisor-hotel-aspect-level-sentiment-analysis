@@ -83,7 +83,7 @@ class BaseExperiment:
                                                        frac_pos=args.frac_pos,
                                                        frac_neu=args.frac_neu,
                                                        frac_neg=args.frac_neg,
-                                                       testset=args.testset
+                                                       testset=args.distribution
                                                        )
         if self.args.dev > 0.0:
             random.shuffle(tripadvisor_dataset.train_data.data)
