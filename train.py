@@ -145,7 +145,8 @@ class BaseExperiment:
         elif self.args.optimizer == 'SGD':
             self.optimizer = optim.SGD(filter(lambda p: p.requires_grad, self.mdl.parameters()),
                                        lr=self.args.learning_rate,
-                                       momentum=0.9)
+                                       momentum=0.9,
+                                       weight_decay=self.args.weight_decay)
         elif self.args.optimizer == 'Adagrad':
             self.optimizer = optim.Adagrad(filter(lambda p: p.requires_grad, self.mdl.parameters()),
                                            lr=self.args.learning_rate)
@@ -266,6 +267,7 @@ class BaseExperiment:
 
     def train(self):
         best_acc = 0.0
+        best_epoch = 1
         i, j = 0, 0
         p = 5
         best_loss = 10000000
@@ -294,6 +296,7 @@ class BaseExperiment:
                     path = save_path + 'models/{}.model'.format(self.file_name())
                     torch.save(self.mdl.state_dict(), path)
                     best_result = result
+                    best_epoch = epoch + 1
                 print('\033[1;31m[Epoch {:>4}]\033[0m  '
                       '\033[1;31mTraining loss={:.5f}\033[0m  '
                       '\033[1;32mTraining accuracy={:.2f}%\033[0m  '
@@ -311,6 +314,7 @@ class BaseExperiment:
                     torch.save(self.mdl.state_dict(), path)
                     best_loss = val_loss
                     best_result = result
+                    best_epoch = epoch + 1
                 else:
                     j += 1
                 print('\033[1;31m[Epoch {:>4}]\033[0m  '
@@ -333,6 +337,7 @@ class BaseExperiment:
         self.learning_history['Training accuracy'] = np.array(accuracy_train).tolist()
         self.learning_history['Validation accuracy'] = np.array(accuracy_validation).tolist()
         self.learning_history['Best Validation accuracy'] = best_result['acc']
+        self.learning_history['Best Validation epoch'] = best_epoch
 
     def test(self, frac_pos, frac_neu, frac_neg):
         path = save_path + 'models/{}.model'.format(self.file_name())
