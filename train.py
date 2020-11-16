@@ -156,7 +156,7 @@ class BaseExperiment:
 
     def load_model(self, path):
         # mdl_best = self.load_model(PATH)
-        # best_model_state = mdl_best.state_dict()
+        # best_model_state = mdl_best.state_dict()/usr/bin/
         # model_state = self.mdl.state_dict()
         # best_model_state = {k: v for k, v in best_model_state.iteritems() if
         #                     k in model_state and v.size() == model_state[k].size()}
@@ -269,7 +269,7 @@ class BaseExperiment:
         best_acc = 0.0
         best_epoch = 1
         i, j = 0, 0
-        p = 5
+        p = 10
         best_loss = 10000000
         best_result = None
         self.select_optimizer()
@@ -406,7 +406,7 @@ def main():
     parser.add_argument('--frac_pos', default=0.4, type=float)
     parser.add_argument('--frac_neu', default=0.3, type=float)
     parser.add_argument('--frac_neg', default=0.3, type=float)
-    parser.add_argument('--testset', default='1', type=str)
+    parser.add_argument('--distribution', default='1', type=str)
     parser.add_argument('--pre_trained_model', default='ABSA', type=str)
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
@@ -486,11 +486,11 @@ def main():
         'orthogonal_': torch.nn.init.orthogonal_,
         'kaiming_normal_': torch.nn.init.kaiming_normal_
     }
-    testset = {'1': {'frac_pos': 0.35, 'frac_neu': 0.35, 'frac_neg': 0.3},
-               '2': {'frac_pos': 0.6, 'frac_neu': 0.15, 'frac_neg': 0.25},
-               '3': {'frac_pos': 0.25, 'frac_neu': 0.6, 'frac_neg': 0.15},
-               '4': {'frac_pos': 0.25, 'frac_neu': 0.15, 'frac_neg': 0.6},
-               }
+    distributions = {'1': {'num': 4000, 'frac_pos': 0.35, 'frac_neu': 0.35, 'frac_neg': 0.3},
+                     '2': {'num': 4000, 'frac_pos': 0.6, 'frac_neu': 0.15, 'frac_neg': 0.25},
+                     '3': {'num': 4000, 'frac_pos': 0.25, 'frac_neu': 0.6, 'frac_neg': 0.15},
+                     '4': {'num': 4000, 'frac_pos': 0.25, 'frac_neu': 0.15, 'frac_neg': 0.6},
+                     }
     args.model_class = model_classes[args.model_name]
     args.inputs_cols = input_colses[args.model_name]
     args.initializer = initializers[args.initializer]
@@ -498,9 +498,9 @@ def main():
     # args.batch_normalizations = False
     exp = BaseExperiment(args)
     exp.train()
-    exp.test(frac_pos=testset[args.testset]['frac_pos'],
-             frac_neu=testset[args.testset]['frac_neu'],
-             frac_neg=testset[args.testset]['frac_neg']
+    exp.test(frac_pos=distributions[args.distribution]['frac_pos'],
+             frac_neu=distributions[args.distribution]['frac_neu'],
+             frac_neg=distributions[args.distribution]['frac_neg']
              )
     exp.write_learning_history()
 
