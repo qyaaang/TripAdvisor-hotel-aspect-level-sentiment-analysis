@@ -28,10 +28,10 @@ for model in "${models[@]}"; do
       printf "\033[1;32mModel:\t%s\nModel_name:\t%s\nOptimizer:\t%s\nLearning_rate:\t%s\nWeight_decay:\t%s\n\033[0m" \
              "$model" "$model_name" "$optimizer" "$learning_rate" "$weight_decay"
       python3 train.py --model_name "$model_name" --dataset $dataset \
-               --learning_rate $learning_rate --weight_decay $weight_decay \
-               --num_sample $num_sample --frac_pos "${fracs[0]}" --frac_neu "${fracs[1]}" --frac_neg "${fracs[2]}" \
-               --max_seq_len $max_seq_len --hidden_dim $hidden_dim --num_epoch $num_epoch \
-               --optimizer "$optimizer" --testset "$model"
+                       --learning_rate $learning_rate --weight_decay $weight_decay \
+                       --num_sample $num_sample --frac_pos "${fracs[0]}" --frac_neu "${fracs[1]}" --frac_neg "${fracs[2]}" \
+                       --max_seq_len $max_seq_len --hidden_dim $hidden_dim --num_epoch $num_epoch \
+                       --optimizer "$optimizer" --distribution "$model"
     done
   done
 done
