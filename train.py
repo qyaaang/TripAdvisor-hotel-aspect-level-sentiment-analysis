@@ -83,7 +83,7 @@ class BaseExperiment:
                                                        frac_pos=args.frac_pos,
                                                        frac_neu=args.frac_neu,
                                                        frac_neg=args.frac_neg,
-                                                       testset=args.distribution
+                                                       testset=args.testset
                                                        )
         if self.args.dev > 0.0:
             random.shuffle(tripadvisor_dataset.train_data.data)
@@ -222,18 +222,20 @@ class BaseExperiment:
         return result
 
     def file_name(self):
-        return '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}'.format(self.args.model_name,
-                                                            self.args.dataset,
-                                                            self.args.num_sample,
-                                                            self.args.frac_pos,
-                                                            self.args.frac_neu,
-                                                            self.args.frac_neg,
-                                                            self.args.optimizer,
-                                                            self.args.learning_rate,
-                                                            self.args.num_epoch,
-                                                            self.args.dropout,
-                                                            self.args.batch_normalizations,
-                                                            self.args.softmax)
+        return '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}'.format(self.args.model_name,
+                                                               self.args.dataset,
+                                                               self.args.num_sample,
+                                                               self.args.frac_pos,
+                                                               self.args.frac_neu,
+                                                               self.args.frac_neg,
+                                                               self.args.optimizer,
+                                                               self.args.learning_rate,
+                                                               self.args.num_epoch,
+                                                               self.args.dropout,
+                                                               self.args.batch_normalizations,
+                                                               self.args.softmax,
+                                                               self.args.early_stopping
+                                                               )
 
     def validation(self):
         self.mdl.eval()
@@ -269,8 +271,8 @@ class BaseExperiment:
         best_acc = 0.0
         best_epoch = 1
         i, j = 0, 0
-        p = 10
-        best_loss = 10000000
+        p = 5
+        best_loss = sys.maxsize
         best_result = None
         self.select_optimizer()
         losses_train = []
@@ -339,7 +341,7 @@ class BaseExperiment:
         self.learning_history['Best Validation accuracy'] = best_result['acc']
         self.learning_history['Best Validation epoch'] = best_epoch
 
-    def test(self, frac_pos, frac_neu, frac_neg):
+    def test(self):
         path = save_path + 'models/{}.model'.format(self.file_name())
         self.mdl.load_state_dict(self.load_model(path))  # Load model
         self.mdl.eval()
@@ -364,24 +366,13 @@ class BaseExperiment:
         cnf_matrix = confusion_matrix(targets, outputs)
         plot_confusion_matrix(cnf_matrix, classes=class_names, title='Confusion matrix', normalize=True)
         # plt.show()
-        plt.savefig('./result/figures/'
-                    '{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}_{}.png'
-                    .format(self.args.model_name,
-                            self.args.dataset,
-                            self.args.num_sample,
-                            str(frac_pos),
-                            str(frac_neu),
-                            str(frac_neg),
-                            self.args.optimizer,
-                            self.args.learning_rate,
-                            self.args.num_epoch,
-                            self.args.dropout,
-                            self.args.batch_normalizations,
-                            self.args.softmax))
+        plt.savefig('./result/figures/{}_testset{}.png'
+                    .format(self.file_name(), self.args.testset)
+                    )
 
     def write_learning_history(self):
         data = json.dumps(self.learning_history, indent=2)
-        with open('./result/learning history/{}.json'.format(self.file_name()), 'w') as f:
+        with open('./result/learning history/train/{}.json'.format(self.file_name()), 'w') as f:
             f.write(data)
 
     def transfer_learning(self):
@@ -406,7 +397,7 @@ def main():
     parser.add_argument('--frac_pos', default=0.4, type=float)
     parser.add_argument('--frac_neu', default=0.3, type=float)
     parser.add_argument('--frac_neg', default=0.3, type=float)
-    parser.add_argument('--distribution', default='1', type=str)
+    parser.add_argument('--testset', default='1', type=str)
     parser.add_argument('--pre_trained_model', default='ABSA', type=str)
     parser.add_argument('--optimizer', default='Adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
@@ -486,11 +477,6 @@ def main():
         'orthogonal_': torch.nn.init.orthogonal_,
         'kaiming_normal_': torch.nn.init.kaiming_normal_
     }
-    distributions = {'1': {'num': 4000, 'frac_pos': 0.35, 'frac_neu': 0.35, 'frac_neg': 0.3},
-                     '2': {'num': 4000, 'frac_pos': 0.6, 'frac_neu': 0.15, 'frac_neg': 0.25},
-                     '3': {'num': 4000, 'frac_pos': 0.25, 'frac_neu': 0.6, 'frac_neg': 0.15},
-                     '4': {'num': 4000, 'frac_pos': 0.25, 'frac_neu': 0.15, 'frac_neg': 0.6},
-                     }
     args.model_class = model_classes[args.model_name]
     args.inputs_cols = input_colses[args.model_name]
     args.initializer = initializers[args.initializer]
@@ -498,10 +484,7 @@ def main():
     # args.batch_normalizations = False
     exp = BaseExperiment(args)
     exp.train()
-    exp.test(frac_pos=distributions[args.distribution]['frac_pos'],
-             frac_neu=distributions[args.distribution]['frac_neu'],
-             frac_neg=distributions[args.distribution]['frac_neg']
-             )
+    # exp.test()
     exp.write_learning_history()
 
 

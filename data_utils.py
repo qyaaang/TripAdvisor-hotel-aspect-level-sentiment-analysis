@@ -149,11 +149,11 @@ class TripadvisorDatasetReader:
     def __init__(self, dataset='TripAdvisor_hotel', embed_dim=300, max_seq_len=-1,
                  num_sample=3600, frac_pos=0.4, frac_neu=0.3, frac_neg=0.3, testset='1'):
         print("preparing {0} dataset...".format(dataset))
-        testsets = {'1': {'frac_pos': 0.35, 'frac_neu': 0.35, 'frac_neg': 0.3},
-                    '2': {'frac_pos': 0.6, 'frac_neu': 0.15, 'frac_neg': 0.25},
-                    '3': {'frac_pos': 0.25, 'frac_neu': 0.6, 'frac_neg': 0.15},
-                    '4': {'frac_pos': 0.25, 'frac_neu': 0.15, 'frac_neg': 0.6},
-                    }
+        fractions = {'1': {'frac_pos': 0.35, 'frac_neu': 0.35, 'frac_neg': 0.3},
+                     '2': {'frac_pos': 0.6, 'frac_neu': 0.15, 'frac_neg': 0.25},
+                     '3': {'frac_pos': 0.25, 'frac_neu': 0.6, 'frac_neg': 0.15},
+                     '4': {'frac_pos': 0.25, 'frac_neu': 0.15, 'frac_neg': 0.6},
+                     }
         fname = {
             'ABSA': {
                 'train': '{}/data_processed/ABSA_dataset_train.json'.format(base_path),
@@ -164,9 +164,9 @@ class TripadvisorDatasetReader:
                          .format(base_path, num_sample, frac_pos, frac_neu, frac_neg),
                 'test': '{}/data_processed/TripAdvisor_hotel_{}_{}_{}_{}_test.json'
                          .format(base_path, num_sample,
-                                 testsets[testset]['frac_pos'],
-                                 testsets[testset]['frac_neu'],
-                                 testsets[testset]['frac_neg']
+                                 fractions[testset]['frac_pos'],
+                                 fractions[testset]['frac_neu'],
+                                 fractions[testset]['frac_neg']
                                  )
             }
         }
@@ -227,7 +227,8 @@ class TripadvisorDatasetReader:
                     right = right.decode("utf-8")
                     aspect_tmp = aspect_tmp.decode("utf-8")
                 if aspect != aspect_tmp and aspect != 'NULL':
-                    print(aspect, text_instance[from_index: to_index])
+                    pass
+                    # print(aspect, text_instance[from_index: to_index])
                 left_clean = " ".join(process_text(left))
                 right_clean = " ".join(process_text(right))
                 text_raw = left_clean + " " + aspect_clean + " " + right_clean
